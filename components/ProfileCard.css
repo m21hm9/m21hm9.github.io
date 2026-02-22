@@ -75,7 +75,7 @@
 
 .pc-card-wrapper--white .pc-details {
   top: auto;
-  bottom: 0.75em;
+  bottom: 1.5em;
 }
 
 /* Override .pc-card * grid so name lines flow in document order (Thom Man Hei then Matthew) */
