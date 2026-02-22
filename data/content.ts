@@ -12,7 +12,6 @@ export const education = [
 // image: URL to logo (Simple Icons CDN or your own /public path)
 export const skills = [
   { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
-  { name: "Solidity", image: "https://cdn.simpleicons.org/solidity/363636" },
   { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
   { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
   { name: "SQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
