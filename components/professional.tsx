@@ -8,7 +8,7 @@ import { education, skills, experience } from "@/data/content";
 
 export function Professional() {
   const [showAllTech, setShowAllTech] = useState(false);
-  const [expandedExperience, setExpandedExperience] = useState<number | null>(0);
+  const [expandedExperience, setExpandedExperience] = useState<Set<number>>(new Set());
   return (
     <section
       id="professional"
@@ -185,7 +185,7 @@ export function Professional() {
           </p>
           <div className="mt-6 space-y-2">
             {experience.map((job, i) => {
-              const isExpanded = expandedExperience === i;
+              const isExpanded = expandedExperience.has(i);
               return (
                 <motion.div
                   key={i}
@@ -198,7 +198,12 @@ export function Professional() {
                   <button
                     type="button"
                     onClick={() =>
-                      setExpandedExperience(isExpanded ? null : i)
+                      setExpandedExperience((prev) => {
+                        const next = new Set(prev);
+                        if (isExpanded) next.delete(i);
+                        else next.add(i);
+                        return next;
+                      })
                     }
                     className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
                     aria-expanded={isExpanded}

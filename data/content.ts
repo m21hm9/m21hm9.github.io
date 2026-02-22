@@ -34,10 +34,10 @@ export const experience = [
     period: "June 2025 – Present",
     location: "Hong Kong",
     bullets: [
-      "Support the world's largest health & beauty retailer (a member of CKH, HKEX:0001).",
-      "Participated in daily sprint standups, sprint planning, and Agile ceremonies to align priorities, report progress on tasks listed on scrum board, and quickly resolve blockers under guidance of the Product Manager and QA lead.",
-      "Engineered automated end-to-end test cases for ML model outputs (UI vs. non-UI), enforcing strict QA standards across PROD and UAT environments using Databricks and PySpark.",
-      "Collaborated closely with ML Engineers in an Agile setting to debug pipeline failures, perform root-cause analysis on production incidents, and ensure high data reliability and rapid iteration.",
+      "Support the world's largest health & beauty retailer (CKH, HKEX:0001).",
+      "Agile ceremonies: standups, sprint planning; reported progress and resolved blockers with PM/QA.",
+      "Automated E2E tests for ML outputs (Databricks/PySpark); QA across PROD and UAT.",
+      "Worked with ML Engineers on pipeline debugging, root-cause analysis, and data reliability.",
     ],
   },
   {
@@ -46,8 +46,8 @@ export const experience = [
     period: "Sept. 2025 – Present",
     location: "Hong Kong",
     bullets: [
-      "Developed DCF financial models and pitch decks to support valuation scenarios and strategic planning for funding rounds.",
-      "Facilitated technical validation partnerships with venture capital firms and academic institutions.",
+      "DCF models and pitch decks for valuation and funding-round planning.",
+      "Technical validation partnerships with VCs and academic institutions.",
     ],
   },
   {
@@ -56,9 +56,9 @@ export const experience = [
     period: "Dec. 2025 – Jan. 2026",
     location: "Hong Kong",
     bullets: [
-      "Led a cross-functional team of 3 software engineers and UI/UX designers through full Agile software development cycles, scale from 1 to N.",
-      "Orchestrated architecture decisions, code refactoring, and integration of custom grammar-checking algorithms + grammar quiz system integrated with adaptive flashcards + Stripe payments, enhancing system reliability and enabling seamless B2B/B2C monetization.",
-      "Collaborated closely with business development team to gather user feedback, prioritize feature roadmaps, and iterate on product enhancements that accelarated long-term scalability.",
+      "Led team through Agile cycles; scaled from 1 to N.",
+      "Architecture, refactoring, grammar-check + quiz system, adaptive flashcards, Stripe; B2B/B2C.",
+      "User feedback, roadmap prioritization, and product iteration with business development.",
     ],
   },
 ];
