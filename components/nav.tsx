@@ -9,12 +9,12 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "#hero", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#professional", label: "Professional" },
-  { href: "#projects", label: "Projects" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/#knowledge-graph", label: "Digital Brain" },
+  { href: "/#professional", label: "Professional" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#certifications", label: "Certifications" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -41,7 +41,7 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
-          href="#hero"
+          href="/"
           className="text-lg font-semibold text-foreground hover:text-accent transition-colors"
         >
           Matthew T.

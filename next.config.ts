@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["reagraph"],
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
