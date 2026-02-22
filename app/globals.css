@@ -50,14 +50,24 @@ html {
 }
 
 @keyframes tech-stack-scroll {
-  0% {
-    transform: translateX(0);
+  from {
+    transform: translate3d(0, 0, 0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
+/* Scroll viewport: isolate painting so only this area repaints */
+.tech-stack-viewport {
+  contain: paint layout;
+  transform: translateZ(0);
+}
+
 .animate-tech-scroll {
-  animation: tech-stack-scroll 40s linear infinite;
+  width: max-content;
+  animation: tech-stack-scroll 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout;
 }

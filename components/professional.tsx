@@ -65,7 +65,7 @@ export function Professional() {
           <p className="mt-1 text-sm text-muted-foreground">
             Technologies and tools I work with to build innovative solutions.
           </p>
-          <div className="mt-5 overflow-hidden rounded-xl bg-background px-6 py-5">
+          <div className="tech-stack-viewport mt-5 overflow-hidden rounded-xl bg-background px-6 py-5">
             <AnimatePresence mode="wait">
               {!showAllTech ? (
                 <motion.div
@@ -76,15 +76,15 @@ export function Professional() {
                   transition={{ duration: 0.2 }}
                   className="flex flex-col"
                 >
-                  <div className="flex flex-nowrap items-center gap-6 pb-1 pt-1 animate-tech-scroll">
+                  <div className="flex w-max flex-nowrap items-center gap-6 pb-1 pt-1 animate-tech-scroll">
                     {[...skills, ...skills].map((skill, i) => (
                       <div
                         key={`${skill.name}-${i}`}
-                        className="group flex shrink-0 items-center justify-center"
+                        className="flex shrink-0 items-center justify-center"
                         title={skill.name}
                       >
                         {"image" in skill && skill.image ? (
-                          <span className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-xl bg-background/80 transition-colors group-hover:bg-background">
+                          <span className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-xl bg-background/80">
                             <Image
                               src={skill.image}
                               alt=""
@@ -92,6 +92,8 @@ export function Professional() {
                               height={84}
                               className="h-[84px] w-[84px] object-contain"
                               unoptimized
+                              decoding="async"
+                              draggable={false}
                             />
                           </span>
                         ) : (
