@@ -140,6 +140,8 @@
 .pc-card-shell {
   position: relative;
   z-index: 1;
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .pc-card * {
