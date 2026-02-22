@@ -84,6 +84,7 @@ export function Projects() {
                                   className="h-5 w-5 rounded-sm object-contain"
                                   width={20}
                                   height={20}
+                                  unoptimized
                                 />
                               ) : null}
                               <span>{t}</span>

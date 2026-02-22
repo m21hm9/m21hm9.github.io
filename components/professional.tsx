@@ -91,6 +91,7 @@ export function Professional() {
                               width={84}
                               height={84}
                               className="h-[84px] w-[84px] object-contain"
+                              unoptimized
                             />
                           </span>
                         ) : (
@@ -135,6 +136,7 @@ export function Professional() {
                               width={72}
                               height={72}
                               className="h-[72px] w-[72px] object-contain"
+                              unoptimized
                             />
                           </span>
                         ) : (
