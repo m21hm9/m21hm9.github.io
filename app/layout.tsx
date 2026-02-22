@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        suppressHydrationError
         className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen bg-background text-foreground`}
+        {...({ suppressHydrationError: true } as React.HTMLAttributes<HTMLBodyElement>)}
       >
         <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           {children}
