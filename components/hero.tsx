@@ -16,7 +16,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-[min(80svh,340px)] flex-1 flex items-center justify-center"
+          className="w-full max-w-[min(80svh,340px)] flex shrink-0 items-center justify-center md:flex-1"
         >
           <ProfileCard
             name="Thom Man Hei Matthew"
@@ -36,10 +36,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="-mt-10 flex flex-col items-center gap-6 pt-6"
+          className="mt-10 flex flex-col items-center gap-6 pt-6 md:-mt-10"
         >
           <p className="max-w-2xl text-center text-lg text-foreground sm:text-xl">
-            Aspring Data Scientist/AI engineer &amp; · AI/ML @ AS Watson Group
+            Aspiring Data Scientist/AI engineer &amp; AI/ML @ AS Watson Group
           </p>
           <Button
             variant="outline"
