@@ -36,7 +36,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-16 flex flex-col items-center gap-6 pt-16 md:mt-20 md:pt-20"
+          className="mt-6 flex flex-col items-center gap-6 pt-6 md:mt-8 md:pt-8"
         >
           <p className="max-w-2xl text-center text-lg text-foreground sm:text-xl">
             Aspiring Data Scientist/AI engineer &amp; AI/ML @ AS Watson Group
