@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, RotateCcw } from "lucide-react";
 import { projects, techIcons } from "@/data/content";
@@ -77,7 +78,7 @@ export function Projects() {
                               title={t}
                             >
                               {iconUrl ? (
-                                <img
+                                <Image
                                   src={iconUrl}
                                   alt=""
                                   className="h-5 w-5 rounded-sm object-contain"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Briefcase, LayoutGrid, X, ChevronDown } from "lucide-react";
 import { education, skills, experience } from "@/data/content";
@@ -84,7 +85,7 @@ export function Professional() {
                       >
                         {"image" in skill && skill.image ? (
                           <span className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-xl bg-background/80 transition-colors group-hover:bg-background">
-                            <img
+                            <Image
                               src={skill.image}
                               alt=""
                               width={84}
@@ -121,14 +122,14 @@ export function Professional() {
                   className="flex flex-col"
                 >
                   <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
-                    {skills.map((skill, i) => (
+                    {skills.map((skill) => (
                       <div
                         key={skill.name}
                         className="flex flex-col items-center gap-2 rounded-xl bg-background/80 p-3 transition-colors hover:bg-background"
                       >
                         {"image" in skill && skill.image ? (
                           <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg">
-                            <img
+                            <Image
                               src={skill.image}
                               alt=""
                               width={72}
