@@ -14,16 +14,20 @@ export const skills = [
   { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
   { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
   { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
-  { name: "SQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
   { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "PostgreSQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
+  { name: "MySQL", image: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "Supabase", image: "https://cdn.simpleicons.org/supabase/3FCF8E" },
   { name: "PyTorch", image: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
   { name: "TensorFlow", image: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
   { name: "Scikit-learn", image: "https://cdn.simpleicons.org/scikitlearn/F89939" },
   { name: "LangChain / LangGraph", image: "https://cdn.simpleicons.org/langchain/1C3C3C" },
-  { name: "NLP / LLM / RAG", image: "https://cdn.simpleicons.org/huggingface/FFD21E" },
-  { name: "Azure Databricks / PySpark", image: "https://cdn.simpleicons.org/apachespark/E25A1C" },
-  { name: "PostgreSQL / Supabase / MySQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
-  { name: "React / Next.js / Node.js", image: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "Huggingface", image: "https://cdn.simpleicons.org/huggingface/FFD21E" },
+  { name: "Azure Databricks", image: "https://cdn.simpleicons.org/databricks/FF3621" },
+  { name: "PySpark", image: "https://cdn.simpleicons.org/apachespark/E25A1C" },
+  { name: "React", image: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "Next.js", image: "https://cdn.simpleicons.org/nextdotjs/000000" },
+  { name: "Node.js", image: "https://cdn.simpleicons.org/nodedotjs/339933" },
   { name: "Git / CI/CD", image: "https://cdn.simpleicons.org/git/F05032" },
 ];
 
@@ -71,7 +75,6 @@ export const techIcons: Record<string, string> = {
   Tavily: "https://cdn.simpleicons.org/google/4285F4",
   Streamlit: "https://cdn.simpleicons.org/streamlit/FF4B4B",
   PyTorch: "https://cdn.simpleicons.org/pytorch/EE4C2C",
-  LoRA: "https://cdn.simpleicons.org/huggingface/FFD21E",
   "Hugging Face": "https://cdn.simpleicons.org/huggingface/FFD21E",
 };
 
@@ -88,7 +91,7 @@ export const projects = [
     title: "Legal Reasoning LLM (Llama-3 Fine-tune)",
     description:
       "Developed \"Headnote LLM\", a domain-specific 8B-parameter model by fine-tuning Meta Llama-3.1 on 10k+ legal judgment datasets. Achieved state-of-the-art performance on legal reasoning tasks while adding only ∼168 MB of trainable parameters via LoRA adapters.",
-    tech: ["Python", "PyTorch", "LoRA", "Hugging Face"],
+    tech: ["Python", "PyTorch", "Hugging Face", "LoRA"],
     github: null as string | null, // Code only on Colab
     // Paste your Google Colab notebook link below (replace the URL with your shareable Colab link)
     liveUrl: "https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID",
