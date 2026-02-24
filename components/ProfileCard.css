@@ -144,6 +144,37 @@
   overflow: hidden;
 }
 
+.pc-card-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(148, 197, 255, 0.2);
+  box-shadow:
+    0 0 calc(30px * var(--pointer-from-center))
+      rgba(148, 197, 255, calc(0.25 + var(--pointer-from-center) * 0.4)),
+    0 0 calc(60px * var(--pointer-from-center))
+      rgba(56, 189, 248, calc(0.2 + var(--pointer-from-center) * 0.4));
+  opacity: 0;
+  transform: translate3d(0, 0, 2px);
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgba(191, 219, 254, 0.35) 0,
+    rgba(59, 130, 246, 0.18) 20%,
+    transparent 55%
+  );
+  transition:
+    opacity 160ms ease-out,
+    box-shadow 160ms ease-out,
+    background 160ms ease-out;
+}
+
+.pc-card-wrapper:hover .pc-card-shell::before,
+.pc-card-wrapper.active .pc-card-shell::before {
+  opacity: calc(0.25 + var(--pointer-from-center) * 0.75);
+}
+
 .pc-card * {
   display: grid;
   grid-area: 1 / 1 / -1 / -1;
