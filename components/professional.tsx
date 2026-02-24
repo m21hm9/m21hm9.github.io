@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Briefcase, LayoutGrid, X, ChevronDown } from "lucide-react";
 import { education, skills, experience } from "@/data/content";
+import { cn } from "@/lib/utils";
 
 export function Professional() {
   const [showAllTech, setShowAllTech] = useState(false);
@@ -90,7 +91,10 @@ export function Professional() {
                               alt=""
                               width={84}
                               height={84}
-                              className="h-[84px] w-[84px] object-contain"
+                              className={cn(
+                                "h-[84px] w-[84px] object-contain",
+                                skill.name === "Next.js" && "dark:invert"
+                              )}
                               unoptimized
                               decoding="async"
                               draggable={false}
@@ -137,7 +141,10 @@ export function Professional() {
                               alt=""
                               width={72}
                               height={72}
-                              className="h-[72px] w-[72px] object-contain"
+                              className={cn(
+                                "h-[72px] w-[72px] object-contain",
+                                skill.name === "Next.js" && "dark:invert"
+                              )}
                               unoptimized
                             />
                           </span>
