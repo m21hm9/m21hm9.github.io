@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Thom Man Hei Matthew",
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
