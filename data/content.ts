@@ -38,10 +38,10 @@ export const experience = [
     period: "June 2025 – Present",
     location: "Hong Kong",
     bullets: [
-      "Support the world's largest health & beauty retailer (CKH, HKEX:0001).",
-      "Agile ceremonies: standups, sprint planning; reported progress and resolved blockers with PM/QA.",
-      "Automated E2E tests for ML outputs (Databricks/PySpark); QA across PROD and UAT.",
-      "Worked with ML Engineers on pipeline debugging, root-cause analysis, and data reliability.",
+      "Supported the world's largest health & beauty retailer (CKH member, HKEX:0001).",
+      "Joined daily Agile ceremonies; tracked scrum board; unblocked with PM & QA Lead.",
+      "Built E2E tests for ML outputs (UI/non-UI) in Databricks + PySpark across PROD/UAT.",
+      "Built a test-results dashboard for faster triage; cut investigation/debug time by 70–80%.",
     ],
   },
   {
