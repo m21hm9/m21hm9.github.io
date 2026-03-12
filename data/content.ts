@@ -99,7 +99,7 @@ export const projects = [
   {
     title: "Statistical Arbitrage Trading Platform",
     description:
-      "Engineered a modular algorithmic trading platform focusing on cointegration analysis (Johansen test) and Z-score signal detection. Implemented dynamic hedging using Kalman Filters and XGBoost for signal generation, integrating risk management (VaR) and real-time visualization.",
+      "StatArb is a comprehensive Python platform for statistical arbitrage across equities, FX, crypto, and metals. It combines multivariate basket stat-arb (GMM-HMM regime switching), factor models, optional XGBoost signals, and advanced risk management/analytics into a single, configurable trading and research toolkit.",
     tech: ["Python", "Alpaca API", "XGBoost", "Kalman Filter"],
     github: "https://github.com/m21hm9/statarb",
     liveUrl: null as string | null,
