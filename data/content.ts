@@ -100,7 +100,7 @@ export const projects = [
     title: "Statistical Arbitrage Trading Platform",
     description:
       "StatArb is a comprehensive Python platform for statistical arbitrage across equities, FX, crypto, and metals. It combines multivariate basket stat-arb (GMM-HMM regime switching), factor models, optional XGBoost signals, and advanced risk management/analytics into a single, configurable trading and research toolkit.",
-    tech: ["Python", "Alpaca API", "XGBoost", "Kalman Filter"],
+    tech: ["Python", "Alpaca API", "XGBoost", "GMM-HMM"],
     github: "https://github.com/m21hm9/statarb",
     liveUrl: null as string | null,
   },
