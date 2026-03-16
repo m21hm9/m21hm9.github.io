@@ -139,7 +139,7 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
               layoutType={layoutType}
               cameraMode={layoutType === "forceDirected3d" ? "rotate" : "pan"}
               theme={theme}
-              labelType="all"
+              labelType="nodes"
               onCanvasClick={handleFitView}
               glOptions={{ antialias: true, alpha: true }}
             />

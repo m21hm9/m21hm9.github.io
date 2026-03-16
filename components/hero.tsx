@@ -3,7 +3,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ProfileCard } from "@/components/ProfileCard";
+import dynamic from "next/dynamic";
+
+const Avatar3D = dynamic(
+  () => import("@/components/MyAvatar3D").then((mod) => mod.Avatar3D),
+  { ssr: false }
+);
 
 export function Hero() {
   return (
@@ -11,26 +16,14 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[90vh] flex-col items-center bg-white dark:bg-black px-4 pt-24 pb-16 sm:px-6 lg:px-8"
     >
-      <div className="mx-auto flex max-w-3xl flex-1 w-full flex-col items-center text-center">
+      <div className="mx-auto flex max-w-5xl flex-1 w-full flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-[min(80svh,340px)] flex shrink-0 items-center justify-center md:flex-1 mb-8 md:mb-12"
+          className="w-full max-w-2xl flex shrink-0 items-center justify-center md:flex-1 mb-8 md:mb-12"
         >
-          <ProfileCard
-            name="Thom Man Hei Matthew"
-            title="Data Science @ CityU HK"
-            handle="thommanheimatthew"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="/images/ME.png"
-            showUserInfo={false}
-            enableTilt={true}
-            enableMobileTilt={false}
-            contactHref="#contact"
-            whiteBackground
-          />
+          <Avatar3D />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

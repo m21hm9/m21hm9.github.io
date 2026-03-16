@@ -9,6 +9,8 @@
     "lint": "npx next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^9.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
     "@vercel/analytics": "^1.6.1",
@@ -21,6 +23,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "reagraph": "^4.30.8",
+    "three": "^0.164.0",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {

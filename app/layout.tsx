@@ -17,10 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen bg-background text-foreground`}
-        {...({ suppressHydrationError: true } as React.HTMLAttributes<HTMLBodyElement>)}
+        suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           {children}
