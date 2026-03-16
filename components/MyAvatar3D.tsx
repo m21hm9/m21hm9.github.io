@@ -17,7 +17,7 @@ export function Avatar3D() {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="relative w-screen aspect-square">
+      <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl h-[65vh] sm:h-[70vh] md:h-[75vh] max-h-[640px]">
         {!loaded && (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-background/60">
             <span className="text-sm text-muted-foreground">
@@ -26,7 +26,7 @@ export function Avatar3D() {
           </div>
         )}
         <Canvas gl={{ antialias: true, alpha: true }}>
-          <PerspectiveCamera makeDefault position={[0, 1.8, 5]} fov={45} />
+          <PerspectiveCamera makeDefault position={[0, 2.0, 6.8]} fov={40} />
           <ambientLight intensity={0.9} />
           <spotLight
             position={[10, 15, 10]}
@@ -68,6 +68,7 @@ type AvatarModelProps = {
 
 function AvatarModel({ onLoaded }: AvatarModelProps) {
   const [currentModel, setCurrentModel] = useState<'walking' | 'wave'>('walking');
+  const [isMobile, setIsMobile] = useState(false);
 
   const walkingData = useGLTF("/models/Walking.glb");
   const waveData = useGLTF("/models/Big_Wave_Hello.glb");
@@ -77,6 +78,17 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
   const { actions } = useAnimations(animations, scene);
   const ref = useRef<THREE.Group>(null);
   const hasNotifiedLoadedRef = useRef(false);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      if (typeof window === "undefined") return;
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -102,8 +114,8 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
     <primitive
       ref={ref}
       object={scene}
-      position={[0, -1.0, 0]}
-      scale={1.5}
+      position={[currentModel === "wave" ? -0.35 : 0, -1.3, 0]}
+      scale={isMobile ? 1.5 : 1.9}
       rotation={[0, 0, 0]}
       onClick={() => {
         setCurrentModel('wave');
