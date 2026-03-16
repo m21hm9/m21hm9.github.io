@@ -46,12 +46,13 @@ export const experience = [
   },
   {
     company: "Versed Digital Technology Limited",
-    role: "Venture Consultant",
+    role: "Venture Consultant – AI Vision",
     period: "Sept. 2025 – Present",
     location: "Hong Kong",
     bullets: [
       "DCF models and pitch decks for valuation and funding-round planning.",
       "Technical validation partnerships with VCs and academic institutions.",
+      "Research on Vision Transformers, VLMs, and multimodal reasoning to drive company development.",
     ],
   },
   {

@@ -94,7 +94,7 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
     }
   }, [scene, onLoaded]);
 
-  useFrame((state) => {
+  useFrame(() => {
     // Model is now fixed in place
   });
 
