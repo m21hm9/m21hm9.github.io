@@ -2,6 +2,8 @@
 
 import "./TextType.css";
 
+import type React from "react";
+import type { HTMLAttributes } from "react";
 import { createElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 
@@ -14,7 +16,7 @@ type VariableSpeed =
 
 type Props = {
   text: string | string[];
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   typingSpeed?: number;
   initialDelay?: number;
   pauseDuration?: number;
@@ -31,7 +33,7 @@ type Props = {
   onSentenceComplete?: (sentence: string, sentenceIndex: number) => void;
   startOnVisible?: boolean;
   reverseMode?: boolean;
-} & React.HTMLAttributes<HTMLElement>;
+} & HTMLAttributes<HTMLElement>;
 
 export default function TextType({
   text,
@@ -179,7 +181,9 @@ export default function TextType({
   return createElement(
     Component,
     {
-      ref: containerRef as any,
+      ref: (node: HTMLElement | null) => {
+        containerRef.current = node;
+      },
       className: `text-type ${className}`,
       ...props,
     },
