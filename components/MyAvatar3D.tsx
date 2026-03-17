@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useRef, useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
 import {
   OrbitControls,
   PerspectiveCamera,
@@ -20,9 +20,17 @@ export function Avatar3D() {
       <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl h-[65vh] sm:h-[70vh] md:h-[75vh] max-h-[640px]">
         {!loaded && (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-background/60">
-            <span className="text-sm text-muted-foreground">
-              Loading avatar...
-            </span>
+            <div
+              className="flex flex-col items-center gap-4"
+              role="status"
+              aria-live="polite"
+              aria-label="Loading avatar"
+            >
+              <div className="h-14 w-14 animate-spin rounded-full border-4 border-muted-foreground/25 border-t-muted-foreground" />
+              <div className="text-base font-semibold text-foreground sm:text-lg md:text-xl">
+                Loading avatar…
+              </div>
+            </div>
           </div>
         )}
         <div className="pointer-events-none absolute right-2 top-1/2 z-20 -translate-y-1/2 select-none sm:right-4">
@@ -167,7 +175,7 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
       position={[currentModel === "walking" ? 0 : -0.35, -1.3, 0]}
       scale={isMobile ? 1.5 : 1.9}
       rotation={[0, 0, 0]}
-      onPointerDown={(e) => {
+      onPointerDown={(e: ThreeEvent<PointerEvent>) => {
         e.stopPropagation();
         if (transitionTimeoutRef.current != null) {
           window.clearTimeout(transitionTimeoutRef.current);
