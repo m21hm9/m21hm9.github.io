@@ -25,6 +25,12 @@ export function Avatar3D() {
             </span>
           </div>
         )}
+        <div className="pointer-events-none absolute right-2 top-1/2 z-20 -translate-y-1/2 select-none sm:right-4">
+          <div className="relative rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-lg animate-pulse">
+            Click me
+            <span className="absolute left-0 top-1/2 -translate-x-2.5 -translate-y-1/2 h-0 w-0 border-y-[8px] border-y-transparent border-r-[10px] border-r-foreground" />
+          </div>
+        </div>
         <Canvas gl={{ antialias: true, alpha: true }}>
           <PerspectiveCamera makeDefault position={[0, 2.0, 6.8]} fov={40} />
           <ambientLight intensity={0.9} />
@@ -40,7 +46,9 @@ export function Avatar3D() {
 
           <Suspense fallback={null}>
             <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.4}>
-              <AvatarModel onLoaded={() => setLoaded(true)} />
+              <AvatarModel
+                onLoaded={() => setLoaded(true)}
+              />
             </Float>
           </Suspense>
           <ContactShadows
@@ -67,13 +75,23 @@ type AvatarModelProps = {
 };
 
 function AvatarModel({ onLoaded }: AvatarModelProps) {
-  const [currentModel, setCurrentModel] = useState<'walking' | 'wave'>('walking');
+  const [currentModel, setCurrentModel] = useState<"walking" | "wave" | "dance">(
+    "walking",
+  );
   const [isMobile, setIsMobile] = useState(false);
+  const [playToken, setPlayToken] = useState(0);
+  const transitionTimeoutRef = useRef<number | null>(null);
 
   const walkingData = useGLTF("/models/Walking.glb");
   const waveData = useGLTF("/models/Big_Wave_Hello.glb");
+  const danceData = useGLTF("/models/FunnyDancing.glb");
 
-  const data = currentModel === 'walking' ? walkingData : waveData;
+  const data =
+    currentModel === "walking"
+      ? walkingData
+      : currentModel === "wave"
+        ? waveData
+        : danceData;
   const { scene, animations } = data;
   const { actions } = useAnimations(animations, scene);
   const ref = useRef<THREE.Group>(null);
@@ -94,10 +112,42 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
     if (actions && Object.keys(actions).length > 0) {
       const action = Object.values(actions)[0];
       if (action) {
+        action.reset();
         action.play();
       }
     }
-  }, [actions]);
+  }, [actions, playToken]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current != null) {
+        window.clearTimeout(transitionTimeoutRef.current);
+        transitionTimeoutRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!actions || Object.keys(actions).length === 0) return;
+
+    if (transitionTimeoutRef.current != null) {
+      window.clearTimeout(transitionTimeoutRef.current);
+      transitionTimeoutRef.current = null;
+    }
+
+    const action = Object.values(actions)[0];
+    const durationMs = Math.max(0, (action?.getClip()?.duration ?? 0) * 1000);
+
+    if (currentModel === "wave") {
+      transitionTimeoutRef.current = window.setTimeout(() => {
+        setCurrentModel("dance");
+      }, durationMs || 5000);
+    } else if (currentModel === "dance") {
+      transitionTimeoutRef.current = window.setTimeout(() => {
+        setCurrentModel("walking");
+      }, durationMs || 5000);
+    }
+  }, [actions, currentModel, playToken]);
 
   useEffect(() => {
     if (!hasNotifiedLoadedRef.current && scene) {
@@ -114,12 +164,17 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
     <primitive
       ref={ref}
       object={scene}
-      position={[currentModel === "wave" ? -0.35 : 0, -1.3, 0]}
+      position={[currentModel === "walking" ? 0 : -0.35, -1.3, 0]}
       scale={isMobile ? 1.5 : 1.9}
       rotation={[0, 0, 0]}
-      onClick={() => {
-        setCurrentModel('wave');
-        setTimeout(() => setCurrentModel('walking'), 5000);
+      onPointerDown={(e) => {
+        e.stopPropagation();
+        if (transitionTimeoutRef.current != null) {
+          window.clearTimeout(transitionTimeoutRef.current);
+          transitionTimeoutRef.current = null;
+        }
+        setCurrentModel("wave");
+        setPlayToken((t) => t + 1);
       }}
     />
   );
@@ -127,4 +182,5 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
 
 useGLTF.preload("/models/Walking.glb");
 useGLTF.preload("/models/Big_Wave_Hello.glb");
+useGLTF.preload("/models/FunnyDancing.glb");
 
