@@ -98,7 +98,7 @@ export const projects = [
     liveUrl: "https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID",
   },
   {
-    title: "Statistical Arbitrage Trading Platform",
+    title: "Statistical Arbitrage Trading Algorithm",
     description:
       "StatArb is a comprehensive Python platform for statistical arbitrage across equities, FX, crypto, and metals. It combines multivariate basket stat-arb (GMM-HMM regime switching), factor models, optional XGBoost signals, and advanced risk management/analytics into a single, configurable trading and research toolkit.",
     tech: ["Python", "Alpaca API", "XGBoost", "GMM-HMM"],
