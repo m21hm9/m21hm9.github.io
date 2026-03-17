@@ -123,5 +123,5 @@ export const contact = {
   phone: "+852-5110-9186",
   linkedin: "https://linkedin.com/in/thommanheimatthew",
   github: "https://github.com/m21hm9",
-  huggingface: "https://huggingface.co/m21hm9",
+  huggingface: "https://huggingface.co/matt2py2",
 };
