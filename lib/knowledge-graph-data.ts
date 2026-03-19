@@ -131,7 +131,7 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("QualiFly Education", "Git / CI/CD", "used");
 
   // Extra project -> skill links for tech not in project.tech array
-  addLink("Agentic Paper Reader (DeepSeek-powered)", "NLP / LLM / RAG", "domain");
+  addLink("Agentic Research Paper Reader", "NLP / LLM / RAG", "domain");
   addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "NLP / LLM / RAG", "domain");
 
   // Certifications -> Skills

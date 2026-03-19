@@ -88,9 +88,9 @@ export const techIcons: Record<string, string> = {
 
 export const projects = [
   {
-    title: "Agentic Paper Reader (DeepSeek-powered)",
+    title: "Agentic Research Paper Reader",
     description:
-      "Agentic Paper Reader is a multi-agent research assistant that understands natural-language research queries, searches arXiv + OpenAlex + Crossref + Tavily, stores papers in Supabase + pgvector, ranks and reflects on results, and lets you select papers for deeper analysis and insight synthesis. The system is built with FastAPI, uses DeepSeek for reasoning (and optional embeddings), and includes a small HTML/JS frontend.",
+      "Agentic Research Paper Reader is a multi-agent research assistant that understands natural-language research queries, searches arXiv + OpenAlex + Crossref + Tavily, stores papers in Supabase + pgvector, ranks and reflects on results, and lets you select papers for deeper analysis and insight synthesis. The system is built with FastAPI, uses DeepSeek for reasoning (and optional embeddings), and includes a small HTML/JS frontend.",
     tech: ["Python", "FastAPI", "Supabase", "DeepSeek LLM", "Tavily", "JavaScript", "PostgreSQL"],
     github: "https://github.com/m21hm9/Autonomous-Research-Agent-v1",
     liveUrl: null as string | null,
