@@ -92,6 +92,27 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // Add "Data Science" as a domain node
   addNode("data-science", "Data Science", "domain", 8);
 
+  // Ensure umbrella/domain nodes referenced by links exist,
+  // otherwise graph edges may point to missing nodes (causing outliers).
+  addNode(slug("SQL"), "SQL", "skill", 7);
+  addNode(slug("NLP / LLM / RAG"), "NLP / LLM / RAG", "domain", 8);
+  addNode(slug("Azure Databricks / PySpark"), "Azure Databricks / PySpark", "skill", 7);
+  addNode(slug("React / Next.js / Node.js"), "React / Next.js / Node.js", "skill", 7);
+
+  // Connect umbrella nodes to their underlying skills to reduce fragmentation.
+  addLink("SQL", "PostgreSQL", "uses");
+  addLink("SQL", "MySQL", "uses");
+
+  addLink("NLP / LLM / RAG", "LangChain / LangGraph", "built with");
+  addLink("NLP / LLM / RAG", "Huggingface", "leverages");
+
+  addLink("Azure Databricks / PySpark", "Azure Databricks", "includes");
+  addLink("Azure Databricks / PySpark", "PySpark", "includes");
+
+  addLink("React / Next.js / Node.js", "React", "includes");
+  addLink("React / Next.js / Node.js", "Next.js", "includes");
+  addLink("React / Next.js / Node.js", "Node.js", "includes");
+
   // Education -> Skills (studied / foundation)
   addLink("City University of Hong Kong", "Data Science", "BSc");
   addLink("City University of Hong Kong", "Python", "studied");
@@ -110,7 +131,7 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("QualiFly Education", "Git / CI/CD", "used");
 
   // Extra project -> skill links for tech not in project.tech array
-  addLink("Autonomous Research Agent (DeepSeek-powered)", "NLP / LLM / RAG", "domain");
+  addLink("Agentic Paper Reader (DeepSeek-powered)", "NLP / LLM / RAG", "domain");
   addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "NLP / LLM / RAG", "domain");
 
   // Certifications -> Skills

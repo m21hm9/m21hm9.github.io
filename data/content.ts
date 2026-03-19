@@ -15,6 +15,7 @@ export const skills = [
   { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
   { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
   { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "TypeScript", image: "https://cdn.simpleicons.org/typescript/3178C6" },
   { name: "PostgreSQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
   { name: "MySQL", image: "https://cdn.simpleicons.org/mysql/4479A1" },
   { name: "Supabase", image: "https://cdn.simpleicons.org/supabase/3FCF8E" },
@@ -28,6 +29,7 @@ export const skills = [
   { name: "React", image: "https://cdn.simpleicons.org/react/61DAFB" },
   { name: "Next.js", image: "https://cdn.simpleicons.org/nextdotjs/000000" },
   { name: "Node.js", image: "https://cdn.simpleicons.org/nodedotjs/339933" },
+  { name: "OpenCV", image: "https://cdn.simpleicons.org/opencv" },
   { name: "Git / CI/CD", image: "https://cdn.simpleicons.org/git/F05032" },
 ];
 
@@ -72,8 +74,13 @@ export const experience = [
 export const techIcons: Record<string, string> = {
   Python: "https://cdn.simpleicons.org/python/3776AB",
   LangGraph: "https://cdn.simpleicons.org/langchain/1C3C3C",
+  FastAPI: "https://cdn.simpleicons.org/fastapi/009688",
+  Supabase: "https://cdn.simpleicons.org/supabase/3FCF8E",
+  PostgreSQL: "https://cdn.simpleicons.org/postgresql/4169E1",
   "DeepSeek LLM": "https://cdn.jsdelivr.net/gh/callback-io/allogo@main/public/logos/deepseek/icon.png",
   Tavily: "https://cdn.simpleicons.org/google/4285F4",
+  JavaScript: "https://cdn.simpleicons.org/javascript/F7DF1E",
+  TypeScript: "https://cdn.simpleicons.org/typescript/3178C6",
   Streamlit: "https://cdn.simpleicons.org/streamlit/FF4B4B",
   PyTorch: "https://cdn.simpleicons.org/pytorch/EE4C2C",
   "Hugging Face": "https://cdn.simpleicons.org/huggingface/FFD21E",
@@ -81,11 +88,11 @@ export const techIcons: Record<string, string> = {
 
 export const projects = [
   {
-    title: "Autonomous Research Agent (DeepSeek-powered)",
+    title: "Agentic Paper Reader (DeepSeek-powered)",
     description:
-      "Built an autonomous research agent using LangGraph + DeepSeek LLM: decomposes complex queries into sub-queries, runs parallel Tavily searches, summarizes findings, self-reflects with 0–10 confidence scoring, and generates fully-cited markdown reports. Supports configurable search depth/iterations, interactive Streamlit UI, CLI testing, and programmatic Python API for multi-hop research automation (e.g. academic surveys, etc.).",
-    tech: ["Python", "LangGraph", "DeepSeek LLM", "Tavily", "Streamlit"],
-    github: "https://github.com/m21hm9/Autonomous-Research-Agent",
+      "Agentic Paper Reader is a multi-agent research assistant that understands natural-language research queries, searches arXiv + OpenAlex + Crossref + Tavily, stores papers in Supabase + pgvector, ranks and reflects on results, and lets you select papers for deeper analysis and insight synthesis. The system is built with FastAPI, uses DeepSeek for reasoning (and optional embeddings), and includes a small HTML/JS frontend.",
+    tech: ["Python", "FastAPI", "Supabase", "DeepSeek LLM", "Tavily", "JavaScript", "PostgreSQL"],
+    github: "https://github.com/m21hm9/Autonomous-Research-Agent-v1",
     liveUrl: null as string | null,
   },
   {
