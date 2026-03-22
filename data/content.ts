@@ -48,7 +48,7 @@ export const experience = [
   },
   {
     company: "Versed Digital Technology Limited",
-    role: "Venture Consultant – AI Vision",
+    role: "Consultant – AI Vision",
     period: "Sept. 2025 – Present",
     location: "Hong Kong",
     bullets: [
