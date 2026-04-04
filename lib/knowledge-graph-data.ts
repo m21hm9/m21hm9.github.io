@@ -104,7 +104,6 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("SQL", "MySQL", "uses");
 
   addLink("NLP / LLM / RAG", "LangChain / LangGraph", "built with");
-  addLink("NLP / LLM / RAG", "Huggingface", "leverages");
 
   addLink("Azure Databricks / PySpark", "Azure Databricks", "includes");
   addLink("Azure Databricks / PySpark", "PySpark", "includes");
@@ -123,12 +122,18 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // Experience -> Skills (used at work)
   addLink("AS Watson Group", "Python", "used");
   addLink("AS Watson Group", "Azure Databricks / PySpark", "used");
-  addLink("AS Watson Group", "Git / CI/CD", "used");
+  addLink("AS Watson Group", "Git", "used");
+  addLink("AS Watson Group", "CI/CD", "used");
   addLink("AS Watson Group", "SQL", "used");
+  addLink("AS Watson Group", "Jira", "used");
+  addLink("AS Watson Group", "DBeaver", "used");
   addLink("Versed Digital Technology Limited", "Python", "models");
   addLink("QualiFly Education", "React / Next.js / Node.js", "built");
+  addLink("QualiFly Education", "TypeScript", "used");
   addLink("QualiFly Education", "Python", "backend");
-  addLink("QualiFly Education", "Git / CI/CD", "used");
+  addLink("QualiFly Education", "Git", "used");
+  addLink("QualiFly Education", "CI/CD", "used");
+  addLink("QualiFly Education", "Vercel", "deployed");
 
   // Extra project -> skill links for tech not in project.tech array
   addLink("Agentic Research Paper Reader", "NLP / LLM / RAG", "domain");

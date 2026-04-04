@@ -10,28 +10,68 @@ export const education = [
 ];
 
 // image: URL to logo (Simple Icons CDN or your own /public path)
-export const skills = [
-  { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
-  { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
-  { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
-  { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-  { name: "TypeScript", image: "https://cdn.simpleicons.org/typescript/3178C6" },
-  { name: "PostgreSQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
-  { name: "MySQL", image: "https://cdn.simpleicons.org/mysql/4479A1" },
-  { name: "Supabase", image: "https://cdn.simpleicons.org/supabase/3FCF8E" },
-  { name: "PyTorch", image: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
-  { name: "TensorFlow", image: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
-  { name: "Scikit-learn", image: "https://cdn.simpleicons.org/scikitlearn/F89939" },
-  { name: "LangChain / LangGraph", image: "https://cdn.simpleicons.org/langchain/1C3C3C" },
-  { name: "Huggingface", image: "https://cdn.simpleicons.org/huggingface/FFD21E" },
-  { name: "Azure Databricks", image: "https://cdn.simpleicons.org/databricks/FF3621" },
-  { name: "PySpark", image: "https://cdn.simpleicons.org/apachespark/E25A1C" },
-  { name: "React", image: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "Next.js", image: "https://cdn.simpleicons.org/nextdotjs/000000" },
-  { name: "Node.js", image: "https://cdn.simpleicons.org/nodedotjs/339933" },
-  { name: "OpenCV", image: "https://cdn.simpleicons.org/opencv" },
-  { name: "Git / CI/CD", image: "https://cdn.simpleicons.org/git/F05032" },
+export interface SkillItem {
+  name: string;
+  image?: string;
+}
+
+export interface SkillGroup {
+  title: string;
+  skills: SkillItem[];
+}
+
+export const skillGroups: SkillGroup[] = [
+  {
+    title: "Languages",
+    skills: [
+      { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
+      { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
+      { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
+      { name: "SQL", image: "https://cdn.simpleicons.org/sqlite/003B57" },
+      { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "TypeScript", image: "https://cdn.simpleicons.org/typescript/3178C6" },
+    ],
+  },
+  {
+    title: "AI/ML",
+    skills: [
+      { name: "PyTorch", image: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
+      { name: "TensorFlow", image: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
+      { name: "Scikit-learn", image: "https://cdn.simpleicons.org/scikitlearn/F89939" },
+      {
+        name: "LangChain / LangGraph",
+        image: "https://cdn.simpleicons.org/langchain/1C3C3C",
+      },
+    ],
+  },
+  {
+    title: "Data & Cloud",
+    skills: [
+      { name: "Azure Databricks", image: "https://cdn.simpleicons.org/databricks/FF3621" },
+      { name: "PySpark", image: "https://cdn.simpleicons.org/apachespark/E25A1C" },
+      { name: "PostgreSQL", image: "https://cdn.simpleicons.org/postgresql/4169E1" },
+      { name: "Supabase", image: "https://cdn.simpleicons.org/supabase/3FCF8E" },
+      { name: "MySQL", image: "https://cdn.simpleicons.org/mysql/4479A1" },
+      { name: "DBeaver", image: "https://cdn.simpleicons.org/dbeaver/382923" },
+    ],
+  },
+  {
+    title: "Web & DevOps",
+    skills: [
+      { name: "React", image: "https://cdn.simpleicons.org/react/61DAFB" },
+      { name: "Next.js", image: "https://cdn.simpleicons.org/nextdotjs/000000" },
+      { name: "Node.js", image: "https://cdn.simpleicons.org/nodedotjs/339933" },
+      { name: "Git", image: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "Docker", image: "https://cdn.simpleicons.org/docker/2496ED" },
+      { name: "CI/CD", image: "https://cdn.simpleicons.org/githubactions/2088FF" },
+      { name: "Jira", image: "https://cdn.simpleicons.org/jira/0052CC" },
+      { name: "Vercel", image: "https://cdn.simpleicons.org/vercel/000000" },
+    ],
+  },
 ];
+
+/** Flat list for marquee, knowledge graph, and any legacy consumers */
+export const skills: SkillItem[] = skillGroups.flatMap((g) => g.skills);
 
 export const experience = [
   {
@@ -73,7 +113,9 @@ export const experience = [
 // Tech name (as used in projects) -> Simple Icons CDN image URL for Key Projects
 export const techIcons: Record<string, string> = {
   Python: "https://cdn.simpleicons.org/python/3776AB",
+  "LangChain / LangGraph": "https://cdn.simpleicons.org/langchain/1C3C3C",
   LangGraph: "https://cdn.simpleicons.org/langchain/1C3C3C",
+  LangChain: "https://cdn.simpleicons.org/langchain/1C3C3C",
   FastAPI: "https://cdn.simpleicons.org/fastapi/009688",
   Supabase: "https://cdn.simpleicons.org/supabase/3FCF8E",
   PostgreSQL: "https://cdn.simpleicons.org/postgresql/4169E1",

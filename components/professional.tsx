@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Briefcase, LayoutGrid, X, ChevronDown } from "lucide-react";
-import { education, skills, experience } from "@/data/content";
+import { education, skillGroups, skills, experience } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 export function Professional() {
@@ -93,7 +93,8 @@ export function Professional() {
                               height={84}
                               className={cn(
                                 "h-[84px] w-[84px] object-contain",
-                                skill.name === "Next.js" && "dark:invert"
+                                (skill.name === "Next.js" || skill.name === "Vercel") &&
+                                  "dark:invert"
                               )}
                               unoptimized
                               decoding="async"
@@ -128,34 +129,45 @@ export function Professional() {
                   transition={{ duration: 0.2 }}
                   className="flex flex-col"
                 >
-                  <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
-                    {skills.map((skill) => (
-                      <div
-                        key={skill.name}
-                        className="flex flex-col items-center gap-2 rounded-xl bg-background/80 p-3 transition-colors hover:bg-background"
-                      >
-                        {"image" in skill && skill.image ? (
-                          <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg">
-                            <Image
-                              src={skill.image}
-                              alt=""
-                              width={72}
-                              height={72}
-                              className={cn(
-                                "h-[72px] w-[72px] object-contain",
-                                skill.name === "Next.js" && "dark:invert"
+                  <div className="space-y-8">
+                    {skillGroups.map((group) => (
+                      <div key={group.title}>
+                        <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                          {group.title}
+                        </h4>
+                        <div className="mt-3 grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
+                          {group.skills.map((skill) => (
+                            <div
+                              key={`${group.title}-${skill.name}`}
+                              className="flex flex-col items-center gap-2 rounded-xl bg-background/80 p-3 transition-colors hover:bg-background"
+                            >
+                              {"image" in skill && skill.image ? (
+                                <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg">
+                                  <Image
+                                    src={skill.image}
+                                    alt=""
+                                    width={72}
+                                    height={72}
+                                    className={cn(
+                                      "h-[72px] w-[72px] object-contain",
+                                      (skill.name === "Next.js" ||
+                                        skill.name === "Vercel") &&
+                                        "dark:invert"
+                                    )}
+                                    unoptimized
+                                  />
+                                </span>
+                              ) : (
+                                <span className="flex h-24 w-24 items-center justify-center rounded-lg bg-muted/50 text-sm font-medium text-muted-foreground">
+                                  {skill.name.slice(0, 2)}
+                                </span>
                               )}
-                              unoptimized
-                            />
-                          </span>
-                        ) : (
-                          <span className="flex h-24 w-24 items-center justify-center rounded-lg bg-muted/50 text-sm font-medium text-muted-foreground">
-                            {skill.name.slice(0, 2)}
-                          </span>
-                        )}
-                        <span className="text-center text-xs font-medium text-foreground leading-tight">
-                          {skill.name}
-                        </span>
+                              <span className="text-center text-xs font-medium text-foreground leading-tight">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     ))}
                   </div>
