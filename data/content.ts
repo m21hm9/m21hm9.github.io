@@ -9,7 +9,7 @@ export const education = [
   },
 ];
 
-// image: URL to logo (Simple Icons CDN or your own /public path)
+// image: URL to logo (Simple Icons / jsDelivr devicon, or /public path)
 export interface SkillItem {
   name: string;
   image?: string;
@@ -25,9 +25,13 @@ export const skillGroups: SkillGroup[] = [
     title: "Languages",
     skills: [
       { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
-      { name: "Java", image: "https://cdn.simpleicons.org/openjdk/437291" },
+      {name: "Java", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@master/icons/java/java-original.svg", },
       { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
-      { name: "SQL", image: "https://cdn.simpleicons.org/sqlite/003B57" },
+      {
+        name: "SQL",
+        image:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon@master/icons/azuresqldatabase/azuresqldatabase-plain.svg",
+      },
       { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
       { name: "TypeScript", image: "https://cdn.simpleicons.org/typescript/3178C6" },
     ],
@@ -38,6 +42,10 @@ export const skillGroups: SkillGroup[] = [
       { name: "PyTorch", image: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
       { name: "TensorFlow", image: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
       { name: "Scikit-learn", image: "https://cdn.simpleicons.org/scikitlearn/F89939" },
+      {
+        name: "Transformers",
+        image: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+      },
       {
         name: "LangChain / LangGraph",
         image: "https://cdn.simpleicons.org/langchain/1C3C3C",
