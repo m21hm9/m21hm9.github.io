@@ -138,6 +138,7 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // Extra project -> skill links for tech not in project.tech array
   addLink("Agentic Research Paper Reader", "NLP / LLM / RAG", "domain");
   addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "NLP / LLM / RAG", "domain");
+  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "Transformers", "built with");
 
   // Certifications -> Skills
   addLink("Machine Learning Specialization", "Python", "covers");
