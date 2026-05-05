@@ -133,6 +133,7 @@ export const techIcons: Record<string, string> = {
   TypeScript: "https://cdn.simpleicons.org/typescript/3178C6",
   Streamlit: "https://cdn.simpleicons.org/streamlit/FF4B4B",
   PyTorch: "https://cdn.simpleicons.org/pytorch/EE4C2C",
+  Transformers: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
   "Hugging Face": "https://cdn.simpleicons.org/huggingface/FFD21E",
 };
 
@@ -155,11 +156,11 @@ export const projects = [
     liveUrl: "https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID",
   },
   {
-    title: "Statistical Arbitrage Trading Algorithm",
+    title: "Reversible Semantic Anchor (RSA)",
     description:
-      "StatArb is a comprehensive Python platform for statistical arbitrage across equities, FX, crypto, and metals. It combines multivariate basket stat-arb (GMM-HMM regime switching), factor models, optional XGBoost signals, and advanced risk management/analytics into a single, configurable trading and research toolkit.",
-    tech: ["Python", "Alpaca API", "XGBoost", "GMM-HMM"],
-    github: "https://github.com/m21hm9/statarb",
+      "RSA is an experimental framework for preserving semantic intent across multi-agent handoffs using a compressed latent anchor instead of raw text-only transfer. It includes a 6-layer Transformer encoder, decoder reconstruction pipeline, and training/testing/stress workflows for reversibility and drift evaluation.",
+    tech: ["Python", "PyTorch", "Transformers", "Hugging Face"],
+    github: "https://github.com/m21hm9/Reversible-Semantic-Anchor",
     liveUrl: null as string | null,
   },
 ];
