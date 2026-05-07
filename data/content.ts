@@ -96,8 +96,8 @@ export const experience = [
   },
   {
     company: "Versed Digital Technology Limited",
-    role: "Consultant – AI Vision",
-    period: "Sept. 2025 – Present",
+    role: "AI Consultant",
+    period: "Sept. 2025 – May. 2026",
     location: "Hong Kong",
     bullets: [
       "DCF models and pitch decks for valuation and funding-round planning.",
