@@ -172,7 +172,6 @@ export const certifications = [
   { name: "Machine Learning in Production", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/db2a4dbc3b639005430f88266839744c" },
   { name: "Generative AI with Large Language Models", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/914aba5edb8d64855ea04a464df16731" },
   { name: "Agentic AI with LangChain & LangGraph", issuer: "IBM", year: "credential", url: "https://coursera.org/share/4e58800b78daf6fc6aab05826f089ae4" },
-  { name: "Certification of Service (Leadership)", issuer: "City University of Hong Kong", year: "credential", url: "https://eu.credential.net/2f0de841-cbb0-4c5e-9175-0a1669348fda#acc.O1Pn5U6r" },
   { name: "Student Chapter of Department of Data Science (2024–2025)", issuer: "City University of Hong Kong", year: "credential", url: "https://eu.credential.net/2f0de841-cbb0-4c5e-9175-0a1669348fda#acc.O1Pn5U6r" },
 ];
 
