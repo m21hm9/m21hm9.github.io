@@ -88,10 +88,10 @@ export const experience = [
     period: "June 2025 – Present",
     location: "Hong Kong",
     bullets: [
-      "Supported the world's largest health & beauty retailer (CKH member, HKEX:0001).",
-      "Joined daily Agile ceremonies; tracked scrum board; unblocked with PM & QA Lead.",
-      "Built E2E tests for ML outputs (UI/non-UI) in Databricks + PySpark across PROD/UAT.",
-      "Built a test-results dashboard for faster triage; cut investigation/debug time by 70–80%.",
+      "Performed QA testing and validation on AI models with trillion-scale datasets.",
+      "Built automated end-to-end testing frameworks using Databricks and PySpark.",
+      "Developed real-time dashboard that cut debugging time by 70-80%.",
+      "Achieved 100% story points completion every sprint.",
     ],
   },
   {
@@ -100,9 +100,9 @@ export const experience = [
     period: "Sept. 2025 – May. 2026",
     location: "Hong Kong",
     bullets: [
-      "DCF models and pitch decks for valuation and funding-round planning.",
-      "Technical validation partnerships with VCs and academic institutions.",
-      "Research on Vision Transformers, VLMs, and multimodal reasoning to drive company development.",
+      "Created DCF financial models and pitch decks for valuation and fundraising.",
+      "Researched ViT and VLM models, achieving 99.9% accuracy and 30% lower human cost.",
+      "Built technical validation partnerships with VCs and universities.",
     ],
   },
   {
@@ -111,9 +111,10 @@ export const experience = [
     period: "Dec. 2025 – Jan. 2026",
     location: "Hong Kong",
     bullets: [
-      "Led team through Agile cycles; scaled from 1 to N.",
-      "Architecture, refactoring, grammar-check + quiz system, adaptive flashcards, Stripe; B2B/B2C.",
-      "User feedback, roadmap prioritization, and product iteration with business development.",
+      "Led cross-functional team of 3 through full Agile cycles.",
+      "Optimized architecture and refactored code for better reproducibility.",
+      "Improved Vercel infrastructure and caching, reducing costs by 35%.",
+      "Integrated grammar checker, adaptive flashcards, quizzes, and Stripe payments.",
     ],
   },
 ];
