@@ -85,7 +85,7 @@ export const experience = [
   {
     company: "AS Watson Group",
     role: "Data Analysis Assistant",
-    period: "June 2025 – Present",
+    period: "June. 2025 – May. 2026",
     location: "Hong Kong",
     bullets: [
       "Performed QA testing and validation on AI models with trillion-scale datasets.",
