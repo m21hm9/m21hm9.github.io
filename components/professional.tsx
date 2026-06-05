@@ -62,7 +62,7 @@ export function Professional() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-sm"
         >
-          <h3 className="text-xl font-semibold text-foreground">Tech stack.</h3>
+          <h3 className="text-xl font-semibold text-foreground">Tech stack</h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Technologies and tools I work with to build innovative solutions.
           </p>

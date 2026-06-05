@@ -43,10 +43,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "TensorFlow", image: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
       { name: "Scikit-learn", image: "https://cdn.simpleicons.org/scikitlearn/F89939" },
       {
-        name: "Transformers",
-        image: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
-      },
-      {
         name: "LangChain / LangGraph",
         image: "https://cdn.simpleicons.org/langchain/1C3C3C",
       },
@@ -70,10 +66,20 @@ export const skillGroups: SkillGroup[] = [
       { name: "Next.js", image: "https://cdn.simpleicons.org/nextdotjs/000000" },
       { name: "Node.js", image: "https://cdn.simpleicons.org/nodedotjs/339933" },
       { name: "Git", image: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "SourceTree", image: "https://cdn.simpleicons.org/sourcetree/0052CC" },
       { name: "Docker", image: "https://cdn.simpleicons.org/docker/2496ED" },
       { name: "CI/CD", image: "https://cdn.simpleicons.org/githubactions/2088FF" },
       { name: "Jira", image: "https://cdn.simpleicons.org/jira/0052CC" },
       { name: "Vercel", image: "https://cdn.simpleicons.org/vercel/000000" },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "LaTeX", image: "https://cdn.simpleicons.org/latex/008080" },
+      { name: "Google Colab", image: "https://cdn.simpleicons.org/googlecolab/F9AB00" },
+      { name: "Jupyter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" },
+      { name: "HuggingFace Hub", image: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" }
     ],
   },
 ];
@@ -170,16 +176,17 @@ export const projects = [
 export const certifications = [
   { name: "Machine Learning Specialization", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/5013f1a28b33e787e11ee8fa406c3826" },
   { name: "Deep Learning Specialization", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/d5016fb6e84fce87dd8e98e2cd62e59a" },
-  { name: "Machine Learning in Production", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/db2a4dbc3b639005430f88266839744c" },
   { name: "Generative AI with Large Language Models", issuer: "DeepLearning.AI", year: "credential", url: "https://coursera.org/share/914aba5edb8d64855ea04a464df16731" },
   { name: "Agentic AI with LangChain & LangGraph", issuer: "IBM", year: "credential", url: "https://coursera.org/share/4e58800b78daf6fc6aab05826f089ae4" },
-  { name: "Student Chapter of Department of Data Science (2024–2025)", issuer: "City University of Hong Kong", year: "credential", url: "https://eu.credential.net/2f0de841-cbb0-4c5e-9175-0a1669348fda#acc.O1Pn5U6r" },
+  { name: "Data Science Job Simulation", issuer: "BCG", year: "credential", url: "https://www.theforage.com/completion-certificates/SKZxezskWgmFjRvj9/Tcz8gTtprzAS4xSoK_SKZxezskWgmFjRvj9_6a0993e20d4494e113239f06_1779436786164_completion_certificate.pdf" },
+  { name: "J.P. Morgan - Quantitative Research Job Simulation", issuer: "JPMorganChase", year: "credential", url: "https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_6a0993e20d4494e113239f06_1779013422410_completion_certificate.pdf" },
+  { name: "Bloomberg Market Concepts", issuer: "Bloomberg", year: "credential", url: "https://portal.bloombergforeducation.com/certificates/wRnYcLnPSafpGE71EZghWB9p" },
 ];
 
 export const contact = {
   email: "matthewthom0629@gmail.com",
   phone: "+852-5110-9186",
-  linkedin: "https://linkedin.com/in/thommanheimatthew",
+  linkedin: "https://hk.linkedin.com/in/matthew-thom-a04306370",
   github: "https://github.com/m21hm9",
   huggingface: "https://huggingface.co/matt2py2",
 };

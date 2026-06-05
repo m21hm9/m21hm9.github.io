@@ -118,16 +118,23 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("City University of Hong Kong", "SQL", "studied");
   addLink("City University of Hong Kong", "PyTorch", "studied");
   addLink("City University of Hong Kong", "React / Next.js / Node.js", "full-stack");
+  addLink("City University of Hong Kong", "Jupyter", "notebooks");
+  addLink("City University of Hong Kong", "Google Colab", "experiments");
+  addLink("City University of Hong Kong", "LaTeX", "reports");
 
   // Experience -> Skills (used at work)
   addLink("AS Watson Group", "Python", "used");
   addLink("AS Watson Group", "Azure Databricks / PySpark", "used");
   addLink("AS Watson Group", "Git", "used");
+  addLink("AS Watson Group", "SourceTree", "used");
   addLink("AS Watson Group", "CI/CD", "used");
   addLink("AS Watson Group", "SQL", "used");
   addLink("AS Watson Group", "Jira", "used");
   addLink("AS Watson Group", "DBeaver", "used");
+  addLink("AS Watson Group", "Jupyter", "analysis");
   addLink("Versed Digital Technology Limited", "Python", "models");
+  addLink("Versed Digital Technology Limited", "PyTorch", "ViT / VLM");
+  addLink("Versed Digital Technology Limited", "HuggingFace Hub", "model hub");
   addLink("QualiFly Education", "React / Next.js / Node.js", "built");
   addLink("QualiFly Education", "TypeScript", "used");
   addLink("QualiFly Education", "Python", "backend");
@@ -138,7 +145,10 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // Extra project -> skill links for tech not in project.tech array
   addLink("Agentic Research Paper Reader", "NLP / LLM / RAG", "domain");
   addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "NLP / LLM / RAG", "domain");
-  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "Transformers", "built with");
+  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "HuggingFace Hub", "fine-tuned on");
+  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "Google Colab", "trained in");
+  addLink("Reversible Semantic Anchor (RSA)", "NLP / LLM / RAG", "domain");
+  addLink("Reversible Semantic Anchor (RSA)", "HuggingFace Hub", "models from");
 
   // Certifications -> Skills
   addLink("Machine Learning Specialization", "Python", "covers");
@@ -146,8 +156,10 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("Deep Learning Specialization", "PyTorch", "covers");
   addLink("Deep Learning Specialization", "TensorFlow", "covers");
   addLink("Generative AI with Large Language Models", "NLP / LLM / RAG", "covers");
+  addLink("Generative AI with Large Language Models", "HuggingFace Hub", "covers");
   addLink("Agentic AI with LangChain & LangGraph", "LangChain / LangGraph", "covers");
-  addLink("Machine Learning in Production", "Azure Databricks / PySpark", "covers");
+  addLink("Data Science Job Simulation", "Jupyter", "covers");
+  addLink("Data Science Job Simulation", "Python", "covers");
 
   // Skills that relate to each other
   addLink("LangChain / LangGraph", "Python", "built on");
@@ -156,6 +168,11 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("Scikit-learn", "Python", "built on");
   addLink("React / Next.js / Node.js", "JavaScript", "built on");
   addLink("NLP / LLM / RAG", "Python", "APIs");
+  addLink("NLP / LLM / RAG", "HuggingFace Hub", "ecosystem");
+  addLink("SourceTree", "Git", "GUI for");
+  addLink("Jupyter", "Python", "runs");
+  addLink("Google Colab", "Python", "runs");
+  addLink("Google Colab", "PyTorch", "GPU training");
 
   return { nodes, links };
 }
