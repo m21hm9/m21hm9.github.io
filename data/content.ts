@@ -100,6 +100,7 @@ export const experience = [
     period: "Sept. 2025 – May. 2026",
     location: "Hong Kong",
     bullets: [
+      "Backed by Cyberport & VCs.",
       "Created DCF financial models and pitch decks for valuation and fundraising.",
       "Researched ViT and VLM models, achieving 99.9% accuracy and 30% lower human cost.",
       "Built technical validation partnerships with VCs and universities.",
@@ -152,9 +153,8 @@ export const projects = [
     description:
       "Developed \"Headnote LLM\", a domain-specific 8B-parameter model by fine-tuning Meta Llama-3.1 on 10k+ legal judgment datasets. Achieved state-of-the-art performance on legal reasoning tasks while adding only ∼168 MB of trainable parameters via LoRA adapters.",
     tech: ["Python", "PyTorch", "Hugging Face", "LoRA"],
-    github: null as string | null, // Code only on Colab
-    // Paste your Google Colab notebook link below (replace the URL with your shareable Colab link)
-    liveUrl: "https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID",
+    github: "https://github.com/m21hm9/Legal-Reasoning-LLM",
+    liveUrl: null as string | null,
   },
   {
     title: "Reversible Semantic Anchor (RSA)",
