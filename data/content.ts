@@ -77,6 +77,8 @@ export const skillGroups: SkillGroup[] = [
     title: "Tools",
     skills: [
       { name: "LaTeX", image: "https://cdn.simpleicons.org/latex/008080" },
+      { name: "VS Code", image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" },
+      { name: "PyCharm", image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/pycharm/pycharm-original.svg" },
       { name: "Google Colab", image: "https://cdn.simpleicons.org/googlecolab/F9AB00" },
       { name: "Jupyter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" },
       { name: "HuggingFace Hub", image: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" }
