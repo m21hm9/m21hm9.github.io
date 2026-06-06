@@ -76,6 +76,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Tools",
     skills: [
+      { name: "Figma", image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg" },
       { name: "LaTeX", image: "https://cdn.simpleicons.org/latex/008080" },
       { name: "VS Code", image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" },
       { name: "PyCharm", image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/pycharm/pycharm-original.svg" },
