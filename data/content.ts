@@ -92,6 +92,13 @@ export const skills: SkillItem[] = skillGroups.flatMap((g) => g.skills);
 
 export const experience = [
   {
+    company: "The Bank of East Asia",
+    role: "AI Engineering Intern",
+    period: "June 2026 – August 2026",
+    location: "Hong Kong & Shenzhen (Qianhai)",
+    bullets: ["To be updated."],
+  },
+  {
     company: "AS Watson Group",
     role: "Data Analysis Assistant",
     period: "June. 2025 – May. 2026",
