@@ -142,6 +142,13 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("QualiFly Education", "CI/CD", "used");
   addLink("QualiFly Education", "Vercel", "deployed");
 
+  // The Bank of East Asia — ASR fine-tuning & data pipeline
+  addLink("The Bank of East Asia", "Python", "used");
+  addLink("The Bank of East Asia", "PyTorch", "fine-tuned");
+  addLink("The Bank of East Asia", "HuggingFace Hub", "Qwen ASR");
+  addLink("The Bank of East Asia", "NLP / LLM / RAG", "ASR / SFT");
+  addLink("The Bank of East Asia", "Google Colab", "training");
+
   // User-requested tool connections
   // Connect PyCharm to the school (used during studies / coursework)
   addLink("PyCharm", "City University of Hong Kong", "used in study");
@@ -152,6 +159,7 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // VS Code is used across education, experience, and projects ('for all')
   addLink("VS Code", "City University of Hong Kong", "used");
   addLink("VS Code", "AS Watson Group", "used");
+  addLink("VS Code", "The Bank of East Asia", "used");
   addLink("VS Code", "Versed Digital Technology Limited", "used");
   addLink("VS Code", "QualiFly Education", "used");
   addLink("VS Code", "Agentic Research Paper Reader", "used");

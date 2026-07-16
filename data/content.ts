@@ -97,9 +97,9 @@ export const experience = [
     period: "June 2026 – August 2026",
     location: "Hong Kong & Shenzhen (Qianhai)",
     bullets: [
-      "Built an end-to-end data pipeline using Cantonese-English meeting audio and TTS-generated finance data to fine-tune the Qwen-1.7B ASR model.",
-      "Designed a context-aware SFT strategy with controlled probability context injection to maintain alignment with the base model.",
-      "Optimized hyperparameters with Optuna, cutting WER by 55% and CER by 13% vs. the base Qwen-1.7B ASR model.",
+      "Built an end-to-end pipeline with Cantonese-English audio and TTS finance data to fine-tune Qwen-1.7B ASR.",
+      "Designed context-aware SFT with controlled context injection to preserve base model alignment.",
+      "Tuned hyperparameters with Optuna, cutting WER by 55% and CER by 13% vs. base Qwen-1.7B.",
     ],
   },
   {
