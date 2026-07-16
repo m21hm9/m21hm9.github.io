@@ -93,10 +93,14 @@ export const skills: SkillItem[] = skillGroups.flatMap((g) => g.skills);
 export const experience = [
   {
     company: "The Bank of East Asia",
-    role: "AI Engineering Intern",
+    role: "Summer Intern",
     period: "June 2026 – August 2026",
     location: "Hong Kong & Shenzhen (Qianhai)",
-    bullets: ["To be updated."],
+    bullets: [
+      "Built an end-to-end data pipeline using Cantonese-English meeting audio and TTS-generated finance data to fine-tune the Qwen-1.7B ASR model.",
+      "Designed a context-aware SFT strategy with controlled probability context injection to maintain alignment with the base model.",
+      "Optimized hyperparameters with Optuna, cutting WER by 55% and CER by 13% vs. the base Qwen-1.7B ASR model.",
+    ],
   },
   {
     company: "AS Watson Group",
