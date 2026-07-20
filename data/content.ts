@@ -99,7 +99,7 @@ export const experience = [
     bullets: [
       "Built an end-to-end pipeline with Cantonese-English audio and TTS finance data to fine-tune Qwen-1.7B ASR.",
       "Designed context-aware SFT with controlled context injection to preserve base model alignment.",
-      "Tuned hyperparameters with Optuna, cutting WER by 55% and CER by 13% vs. base Qwen-1.7B.",
+      "Tuned hyperparameters with Optuna, substantially reducing WER and notably improving CER compared to the base Qwen-1.7B model.",
     ],
   },
   {
