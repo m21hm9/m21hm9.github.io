@@ -148,6 +148,7 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("The Bank of East Asia", "HuggingFace Hub", "Qwen ASR");
   addLink("The Bank of East Asia", "NLP / LLM / RAG", "ASR / SFT");
   addLink("The Bank of East Asia", "Google Colab", "training");
+  addLink("The Bank of East Asia", "Docker", "used");
 
   // User-requested tool connections
   // Connect PyCharm to the school (used during studies / coursework)
