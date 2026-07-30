@@ -51,7 +51,7 @@ export function Hero() {
           className="mt-6 flex flex-col items-center gap-6 pt-6 md:mt-8 md:pt-8"
         >
           <p className="max-w-2xl text-center text-lg text-foreground sm:text-xl">
-            I don't know haha
+            I don&apos;t know haha
           </p>
           <Button
             variant="outline"
