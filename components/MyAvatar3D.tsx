@@ -18,7 +18,7 @@ export function Avatar3D() {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl h-[65vh] sm:h-[70vh] md:h-[75vh] max-h-[640px]">
+      <div className="relative w-full max-w-md overflow-visible sm:max-w-lg md:max-w-xl h-[65vh] sm:h-[70vh] md:h-[75vh] max-h-[640px]">
         {!loaded && (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-background/60">
             <div
@@ -34,9 +34,7 @@ export function Avatar3D() {
             </div>
           </div>
         )}
-        <div className="pointer-events-none absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-3 select-none sm:translate-x-4">
-          <ClickMeButton />
-        </div>
+        <ClickMeButton />
         <Canvas gl={{ antialias: true, alpha: true }}>
           <PerspectiveCamera makeDefault position={[0, 2.0, 6.8]} fov={40} />
           <ambientLight intensity={0.9} />

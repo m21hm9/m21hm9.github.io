@@ -1,6 +1,25 @@
 /* From Uiverse.io by AatreyuShau */
+.press-me-anchor {
+  position: absolute;
+  z-index: 20;
+  top: 52%;
+  left: 63%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  pointer-events: none;
+  user-select: none;
+  max-width: calc(100% - 63%);
+}
+
 .press-me-button {
+  --press-me-font: clamp(0.7rem, 0.55rem + 1.2vw, 1.35rem);
+  --press-me-padding-y: clamp(0.45em, 0.3em + 0.6vw, 0.85em);
+  --press-me-padding-x: clamp(0.65em, 0.45em + 0.8vw, 1em);
+  --press-me-radius: clamp(1rem, 0.5rem + 2vw, 2rem);
+  --press-me-shadow: clamp(2px, 0.35vw, 4px);
+
   position: relative;
+  white-space: nowrap;
   text-align: center;
   transition: 0.3s ease-in-out;
   cursor: pointer;
@@ -8,32 +27,24 @@
   filter: url(#handDrawnNoise);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   user-select: none;
   font-family: "Courier New", monospace;
-  font-size: 1.5rem;
+  font-size: var(--press-me-font);
   font-weight: bold;
-  padding: 1em;
-  border-width: 0px;
-  border-radius: 2rem;
-  box-shadow: #33333366 4px 4px 0 1px;
+  padding: var(--press-me-padding-y) var(--press-me-padding-x);
+  border-width: 0;
+  border-radius: var(--press-me-radius);
+  box-shadow: #33333366 var(--press-me-shadow) var(--press-me-shadow) 0 1px;
   animation: press-me-idle 1s infinite ease-in-out;
   color: inherit;
 }
 
-.press-me-highlight {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  fill: rgba(255, 225, 0, 0.5);
-  stroke: rgba(255, 225, 0, 0.5);
-  stroke-width: 10;
-  stroke-linecap: round;
-  pointer-events: none;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  transition: stroke-dashoffset 0.5s ease-in-out;
+.press-me-button-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
 @keyframes press-me-idle {
@@ -49,55 +60,13 @@
   }
 }
 
-.press-me-button-cosm {
-  fill: #33333366;
-  transition: 0.3s ease-out;
-  scale: 0.5;
-  position: absolute;
-  translate: calc(-100% + 24px) 1.5rem;
-}
-
-.press-me-button:hover {
-  font-weight: bold;
-  border-width: 0px;
-  border-radius: 2rem;
-  rotate: -2.5deg;
-  animation: press-me-hover 2.5s infinite ease-in-out;
-}
-
-.press-me-button:hover .press-me-highlight {
-  stroke-dashoffset: 0;
-}
-
-.press-me-button:active .press-me-highlight {
-  stroke-dashoffset: 1000;
-  animation:
-    press-me-highlight 5s infinite,
-    press-me-col 0.5s forwards;
-  stroke: #bc4e2666;
-}
-
-@keyframes press-me-col {
-  0% {
-    stroke: rgba(255, 225, 0, 0.5);
-  }
-  100% {
-    stroke: #1c98eb66;
-  }
-}
-
-@keyframes press-me-highlight {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  25% {
-    stroke-dashoffset: 1000;
-  }
-  50% {
-    stroke-dashoffset: 1000;
-  }
-  100% {
-    stroke-dashoffset: 0;
+@media (hover: hover) and (pointer: fine) {
+  .press-me-button:hover {
+    font-weight: bold;
+    border-width: 0;
+    border-radius: var(--press-me-radius);
+    rotate: -2.5deg;
+    animation: press-me-hover 2.5s infinite ease-in-out;
   }
 }
 
@@ -105,7 +74,7 @@
   0% {
     rotate: 0deg;
     filter: url(#handDrawnNoise);
-    translate: 0 0px;
+    translate: 0 0;
   }
   25% {
     rotate: -1deg;
@@ -125,27 +94,16 @@
   100% {
     rotate: 0deg;
     filter: url(#handDrawnNoise);
-    translate: 0 0px;
+    translate: 0 0;
   }
-}
-
-.press-me-button:hover .press-me-button-cosm {
-  rotate: -15deg;
-  translate: calc(-100% + 22px) 1.9rem;
-}
-
-.press-me-button:active .press-me-button-cosm {
-  fill: #333333f1;
-  rotate: -135deg;
-  translate: calc(-100% + 55px) 1.6rem;
-  animation: none;
 }
 
 .press-me-button:active {
   font-weight: bold;
-  border-width: 0px;
-  border-radius: 2rem;
-  box-shadow: inset #333333f1 4px 4px 0 1px;
+  border-width: 0;
+  border-radius: var(--press-me-radius);
+  box-shadow: inset #333333f1 var(--press-me-shadow) var(--press-me-shadow) 0
+    1px;
   rotate: -2.5deg;
   animation: press-me-active 1s infinite ease-in-out;
 }
@@ -168,5 +126,45 @@
   100% {
     filter: url(#handDrawnNoiset);
     translate: 0 -1px;
+  }
+}
+
+@media (max-width: 639px) {
+  .press-me-anchor {
+    top: auto;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.92);
+    transform-origin: center bottom;
+    max-width: 90%;
+  }
+
+  .press-me-button {
+    --press-me-font: clamp(0.58rem, 2.8vw, 0.75rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .press-me-anchor {
+    top: 51%;
+    left: 66%;
+    max-width: calc(100% - 66%);
+    transform: translateY(-50%) translateX(0.75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .press-me-anchor {
+    top: 52%;
+    left: 76%;
+    max-width: calc(100% - 76%);
+    transform: translateY(-50%) translateX(2rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .press-me-anchor {
+    bottom: 4%;
+    transform: translateX(-50%) scale(0.85);
   }
 }
