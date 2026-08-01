@@ -11,6 +11,7 @@ import {
   useAnimations,
 } from "@react-three/drei";
 import * as THREE from "three";
+import { ClickMeButton } from "@/components/ClickMeButton";
 
 export function Avatar3D() {
   const [loaded, setLoaded] = useState(false);
@@ -33,11 +34,8 @@ export function Avatar3D() {
             </div>
           </div>
         )}
-        <div className="pointer-events-none absolute right-2 top-1/2 z-20 -translate-y-1/2 select-none sm:right-4">
-          <div className="relative rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-lg animate-pulse">
-            Click me
-            <span className="absolute left-0 top-1/2 -translate-x-2.5 -translate-y-1/2 h-0 w-0 border-y-[8px] border-y-transparent border-r-[10px] border-r-foreground" />
-          </div>
+        <div className="pointer-events-none absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-3 select-none sm:translate-x-4">
+          <ClickMeButton />
         </div>
         <Canvas gl={{ antialias: true, alpha: true }}>
           <PerspectiveCamera makeDefault position={[0, 2.0, 6.8]} fov={40} />
