@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import TextType from "@/components/TextType";
+import { CodePreviewCard } from "@/components/CodePreviewCard";
 
 const Avatar3D = dynamic(
   () => import("@/components/MyAvatar3D").then((mod) => mod.Avatar3D),
@@ -48,11 +49,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-6 flex flex-col items-center gap-6 pt-6 md:mt-8 md:pt-8"
+          className="mt-6 flex w-full flex-col items-center gap-6 pt-6 md:mt-8 md:pt-8"
         >
-          <p className="max-w-2xl text-center text-lg text-foreground sm:text-xl">
-            I don&apos;t know haha
-          </p>
+          <div className="w-full max-w-[520px]">
+            <CodePreviewCard />
+          </div>
           <Button
             variant="outline"
             asChild

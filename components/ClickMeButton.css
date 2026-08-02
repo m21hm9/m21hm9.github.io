@@ -131,12 +131,11 @@
 
 @media (max-width: 639px) {
   .press-me-anchor {
-    top: auto;
-    bottom: 6%;
-    left: 50%;
-    transform: translateX(-50%) scale(0.92);
-    transform-origin: center bottom;
-    max-width: 90%;
+    top: 52%;
+    left: 74%;
+    transform: translateY(-50%) translateX(0.75rem) scale(0.92);
+    transform-origin: left center;
+    max-width: calc(100% - 74%);
   }
 
   .press-me-button {
@@ -164,7 +163,6 @@
 
 @media (max-width: 380px) {
   .press-me-anchor {
-    bottom: 4%;
-    transform: translateX(-50%) scale(0.85);
+    transform: translateY(-50%) translateX(0.75rem) scale(0.85);
   }
 }
