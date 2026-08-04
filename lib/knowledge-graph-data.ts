@@ -135,12 +135,6 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("Versed Digital Technology Limited", "Python", "models");
   addLink("Versed Digital Technology Limited", "PyTorch", "ViT / VLM");
   addLink("Versed Digital Technology Limited", "HuggingFace Hub", "model hub");
-  addLink("QualiFly Education", "React / Next.js / Node.js", "built");
-  addLink("QualiFly Education", "TypeScript", "used");
-  addLink("QualiFly Education", "Python", "backend");
-  addLink("QualiFly Education", "Git", "used");
-  addLink("QualiFly Education", "CI/CD", "used");
-  addLink("QualiFly Education", "Vercel", "deployed");
 
   // The Bank of East Asia — ASR fine-tuning & data pipeline
   addLink("The Bank of East Asia", "Python", "used");
@@ -154,15 +148,11 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   // Connect PyCharm to the school (used during studies / coursework)
   addLink("PyCharm", "City University of Hong Kong", "used in study");
 
-  // Connect Figma to QualiFly Education (design tool used at the company)
-  addLink("Figma", "QualiFly Education", "design");
-
   // VS Code is used across education, experience, and projects ('for all')
   addLink("VS Code", "City University of Hong Kong", "used");
   addLink("VS Code", "AS Watson Group", "used");
   addLink("VS Code", "The Bank of East Asia", "used");
   addLink("VS Code", "Versed Digital Technology Limited", "used");
-  addLink("VS Code", "QualiFly Education", "used");
   addLink("VS Code", "Agentic Research Paper Reader", "used");
 
   // Extra project -> skill links for tech not in project.tech array

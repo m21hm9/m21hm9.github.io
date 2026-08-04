@@ -3,7 +3,7 @@
 export const education = [
   {
     school: "City University of Hong Kong",
-    degree: "Bachelor of Science in Data Science",
+    degree: "Bachelor of Science in Data Science, Minor in Psychology",
     period: "Aug. 2024 – June 2028",
     description: "Hong Kong",
   },
@@ -93,7 +93,7 @@ export const skills: SkillItem[] = skillGroups.flatMap((g) => g.skills);
 export const experience = [
   {
     company: "The Bank of East Asia",
-    role: "AI Engineering Intern",
+    role: "Summer Intern — Fintech",
     period: "June 2026 – August 2026",
     location: "Hong Kong & Shenzhen (Qianhai)",
     bullets: [
@@ -124,18 +124,6 @@ export const experience = [
       "Created DCF financial models and pitch decks for valuation and fundraising.",
       "Researched ViT and VLM models, achieving 99.9% accuracy and 30% lower human cost.",
       "Built technical validation partnerships with VCs and universities.",
-    ],
-  },
-  {
-    company: "QualiFly Education",
-    role: "Lead Software Engineer",
-    period: "Dec. 2025 – Jan. 2026",
-    location: "Hong Kong",
-    bullets: [
-      "Led cross-functional team of 3 through full Agile cycles.",
-      "Optimized architecture and refactored code for better reproducibility.",
-      "Improved Vercel infrastructure and caching, reducing costs by 35%.",
-      "Integrated grammar checker, adaptive flashcards, quizzes, and Stripe payments.",
     ],
   },
 ];
