@@ -68,6 +68,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Git", image: "https://cdn.simpleicons.org/git/F05032" },
       { name: "SourceTree", image: "https://cdn.simpleicons.org/sourcetree/0052CC" },
       { name: "Docker", image: "https://cdn.simpleicons.org/docker/2496ED" },
+      { name: "Linux", image: "https://cdn.simpleicons.org/linux/FCC624" },
       { name: "CI/CD", image: "https://cdn.simpleicons.org/githubactions/2088FF" },
       { name: "Jira", image: "https://cdn.simpleicons.org/jira/0052CC" },
       { name: "Vercel", image: "https://cdn.simpleicons.org/vercel/000000" },
