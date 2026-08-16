@@ -19,7 +19,7 @@ export default function Home() {
               My Digital Brain
             </h2>
             <p className="text-muted-foreground text-sm mb-4">
-              Data Science student at City University of Hong Kong. Focus on AI, LLMs, scalable systems. Technical rigour meets international outlook. Open to collaboration.
+              Data Science student at City University of Hong Kong. Haha this is my digital brain!
             </p>
             <KnowledgeGraphSection data={DIGITAL_BRAIN_DATA} height={500} />
           </div>

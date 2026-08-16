@@ -25,7 +25,10 @@
     "react-dom": "^19.2.4",
     "reagraph": "^4.30.8",
     "tailwind-merge": "^2.5.4",
-    "three": "^0.164.0"
+    "three": "^0.180.0"
+  },
+  "overrides": {
+    "three": "$three"
   },
   "devDependencies": {
     "@types/node": "^22.9.0",
