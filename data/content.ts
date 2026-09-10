@@ -27,11 +27,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Python", image: "https://cdn.simpleicons.org/python/3776AB" },
       {name: "Java", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@master/icons/java/java-original.svg", },
       { name: "C++", image: "https://cdn.simpleicons.org/cplusplus/00599C" },
-      {
-        name: "SQL",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon@master/icons/azuresqldatabase/azuresqldatabase-plain.svg",
-      },
+      { name: "SQL", image: "/icons/sql.svg" },
       { name: "JavaScript", image: "https://cdn.simpleicons.org/javascript/F7DF1E" },
       { name: "TypeScript", image: "https://cdn.simpleicons.org/typescript/3178C6" },
     ],
