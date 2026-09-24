@@ -12,6 +12,13 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { ClickMeButton } from "@/components/ClickMeButton";
+import { withBasePath } from "@/lib/utils";
+
+const MODEL_PATHS = {
+  walking: withBasePath("/models/Walking.glb"),
+  wave: withBasePath("/models/Big_Wave_Hello.glb"),
+  dance: withBasePath("/models/FunnyDancing.glb"),
+} as const;
 
 export function Avatar3D() {
   const [loaded, setLoaded] = useState(false);
@@ -86,9 +93,9 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
   const [playToken, setPlayToken] = useState(0);
   const transitionTimeoutRef = useRef<number | null>(null);
 
-  const walkingData = useGLTF("/models/Walking.glb");
-  const waveData = useGLTF("/models/Big_Wave_Hello.glb");
-  const danceData = useGLTF("/models/FunnyDancing.glb");
+  const walkingData = useGLTF(MODEL_PATHS.walking);
+  const waveData = useGLTF(MODEL_PATHS.wave);
+  const danceData = useGLTF(MODEL_PATHS.dance);
 
   const data =
     currentModel === "walking"
@@ -184,7 +191,7 @@ function AvatarModel({ onLoaded }: AvatarModelProps) {
   );
 }
 
-useGLTF.preload("/models/Walking.glb");
-useGLTF.preload("/models/Big_Wave_Hello.glb");
-useGLTF.preload("/models/FunnyDancing.glb");
+useGLTF.preload(MODEL_PATHS.walking);
+useGLTF.preload(MODEL_PATHS.wave);
+useGLTF.preload(MODEL_PATHS.dance);
 

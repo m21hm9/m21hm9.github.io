@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Briefcase, LayoutGrid, X, ChevronDown } from "lucide-react";
 import { education, skillGroups, skills, experience } from "@/data/content";
-import { cn } from "@/lib/utils";
+import { cn, withBasePath } from "@/lib/utils";
 
 export function Professional() {
   const [showAllTech, setShowAllTech] = useState(false);
@@ -87,7 +87,7 @@ export function Professional() {
                         {"image" in skill && skill.image ? (
                           <span className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-xl bg-background/80">
                             <Image
-                              src={skill.image}
+                              src={withBasePath(skill.image)}
                               alt=""
                               width={84}
                               height={84}
@@ -144,7 +144,7 @@ export function Professional() {
                               {"image" in skill && skill.image ? (
                                 <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg">
                                   <Image
-                                    src={skill.image}
+                                    src={withBasePath(skill.image)}
                                     alt=""
                                     width={72}
                                     height={72}

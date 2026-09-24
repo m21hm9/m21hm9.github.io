@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Github, ExternalLink, RotateCcw } from "lucide-react";
 import { projects, techIcons } from "@/data/content";
 import { Button } from "@/components/ui/button";
+import { withBasePath } from "@/lib/utils";
 
 export function Projects() {
   const [flipped, setFlipped] = useState<number | null>(null);
@@ -79,7 +80,7 @@ export function Projects() {
                             >
                               {iconUrl ? (
                                 <Image
-                                  src={iconUrl}
+                                  src={withBasePath(iconUrl)}
                                   alt=""
                                   className="h-5 w-5 rounded-sm object-contain"
                                   width={20}
