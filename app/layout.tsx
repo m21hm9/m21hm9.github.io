@@ -25,7 +25,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           {children}
         </ThemeProvider>
-        {process.env.NEXT_PUBLIC_BASE_PATH ? null : <Analytics />}
+        {process.env.NEXT_PUBLIC_GITHUB_PAGES === "true" ? null : <Analytics />}
       </body>
     </html>
   );

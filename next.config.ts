@@ -1,9 +1,8 @@
 import path from "path";
 import type { NextConfig } from "next";
 
-// Static GitHub Pages export. Vercel builds leave GITHUB_PAGES unset.
+// Static GitHub Pages export for https://m21hm9.github.io. Vercel builds leave GITHUB_PAGES unset.
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const githubPagesBasePath = "/Thom-Man-hei-Matthew";
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -13,12 +12,12 @@ const nextConfig: NextConfig = {
   ...(isGithubPages
     ? {
         output: "export",
-        basePath: githubPagesBasePath,
         trailingSlash: true,
       }
     : {}),
   env: {
-    NEXT_PUBLIC_BASE_PATH: isGithubPages ? githubPagesBasePath : "",
+    NEXT_PUBLIC_BASE_PATH: "",
+    NEXT_PUBLIC_GITHUB_PAGES: isGithubPages ? "true" : "",
   },
   images: {
     ...(isGithubPages ? { unoptimized: true } : {}),
