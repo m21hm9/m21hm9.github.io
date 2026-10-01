@@ -83,14 +83,6 @@ html {
   background: hsl(var(--accent) / 0.85);
 }
 
-.portrait-scan {
-  background-image:
-    linear-gradient(transparent 50%, hsl(var(--background) / 0.14) 50%),
-    linear-gradient(90deg, hsl(var(--accent) / 0.05) 1px, transparent 1px);
-  background-size: 100% 4px, 40px 40px;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

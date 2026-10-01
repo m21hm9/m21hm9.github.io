@@ -40,20 +40,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="workbench-frame relative mx-auto w-full max-w-lg overflow-hidden rounded-xl border border-border">
-          <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:px-5">
-            <span><span className="text-accent">fig. 01</span> / particle portrait</span>
-            <span className="hidden sm:inline">interactive study</span>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-x-10 inset-y-12 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
-            <ParticleFace />
-            <div className="portrait-scan absolute inset-0" aria-hidden="true" />
-          </div>
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:px-5">
-            <span>input: click or tap to scatter</span>
-            <span className="text-accent">render: particles</span>
-          </div>
+        <div className="relative mx-auto w-full max-w-lg">
+          <div className="pointer-events-none absolute inset-x-12 inset-y-16 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
+          <ParticleFace />
         </div>
       </div>
     </section>
