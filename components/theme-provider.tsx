@@ -34,7 +34,7 @@ export function ThemeProvider({
   const [theme, setThemeState] = React.useState<Theme>(defaultTheme);
   const [resolvedTheme, setResolvedTheme] = React.useState<"dark" | "light">(
     () => {
-      if (typeof window === "undefined") return "light";
+      if (typeof window === "undefined") return defaultTheme === "dark" ? "dark" : "light";
       if (defaultTheme === "system") {
         return window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"

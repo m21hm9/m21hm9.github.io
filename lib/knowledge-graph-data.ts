@@ -154,13 +154,10 @@ export function buildDigitalBrainData(): KnowledgeGraphData {
   addLink("VS Code", "AS Watson Group", "used");
   addLink("VS Code", "The Bank of East Asia", "used");
   addLink("VS Code", "Versed Digital Technology Limited", "used");
-  addLink("VS Code", "Agentic Research Paper Reader", "used");
 
   // Extra project -> skill links for tech not in project.tech array
-  addLink("Agentic Research Paper Reader", "NLP / LLM / RAG", "domain");
-  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "NLP / LLM / RAG", "domain");
-  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "HuggingFace Hub", "fine-tuned on");
-  addLink("Legal Reasoning LLM (Llama-3 Fine-tune)", "Google Colab", "trained in");
+  addLink("torch-molecule", "HuggingFace Hub", "pretrained models");
+  addLink("Autonomous Research Agent v0", "NLP / LLM / RAG", "domain");
   addLink("Reversible Semantic Anchor (RSA)", "NLP / LLM / RAG", "domain");
   addLink("Reversible Semantic Anchor (RSA)", "HuggingFace Hub", "models from");
 

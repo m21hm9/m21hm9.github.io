@@ -1,166 +1,83 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Github, ExternalLink, RotateCcw } from "lucide-react";
-import { projects, techIcons } from "@/data/content";
-import { Button } from "@/components/ui/button";
-import { withBasePath } from "@/lib/utils";
+import { ArrowUpRight, Github } from "lucide-react";
+import { projects } from "@/data/content";
 
 export function Projects() {
-  const [flipped, setFlipped] = useState<number | null>(null);
-
   return (
-    <section
-      id="projects"
-      className="relative scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto max-w-5xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-        >
-          Key Projects
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, delay: 0.05 }}
-          className="mt-2 text-muted-foreground"
-        >
-          Click a card to flip and see details.
-        </motion.p>
+    <section id="projects" className="scroll-mt-24 border-y border-border bg-card/50 px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">04 / selected work</p>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Projects and contributions.</h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+              The first four repositories pinned to my GitHub, spanning open-source molecular AI, research agents and machine learning experiments.
+            </p>
+          </div>
+          <a
+            href="https://github.com/m21hm9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            All repositories <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => {
-            const isFlipped = flipped === i;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="perspective-[1000px]"
-                style={{ minHeight: 380 }}
-              >
-                <motion.article
-                  onClick={() => setFlipped(isFlipped ? null : i)}
-                  className="relative h-full w-full cursor-pointer"
-                  style={{ transformStyle: "preserve-3d" }}
-                  initial={false}
-                  animate={{ rotateY: isFlipped ? 180 : 0 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {projects.map((project, i) => (
+            <article
+              key={project.title}
+              className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg sm:p-8"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-4 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                <span className="text-accent">research/{String(i + 1).padStart(2, "0")}.md</span>
+                <span>{project.category}</span>
+              </div>
+
+              <h3 className="mt-6 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{project.title}</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{project.summary}</p>
+              {project.metric && (
+                <a
+                  href={project.metric.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex w-fit flex-wrap items-baseline gap-x-2 rounded-lg border border-accent/25 bg-accent/5 px-3 py-2 text-accent transition-colors hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  {/* Front: title + tech */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
-                    style={{
-                      backfaceVisibility: "hidden",
-                      WebkitBackfaceVisibility: "hidden",
-                    }}
-                  >
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {project.title}
-                      </h3>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {project.tech.map((t) => {
-                          const iconUrl = techIcons[t];
-                          return (
-                            <span
-                              key={t}
-                              className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent"
-                              title={t}
-                            >
-                              {iconUrl ? (
-                                <Image
-                                  src={withBasePath(iconUrl)}
-                                  alt=""
-                                  className="h-5 w-5 rounded-sm object-contain"
-                                  width={20}
-                                  height={20}
-                                  unoptimized
-                                />
-                              ) : null}
-                              <span>{t}</span>
-                            </span>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Click to flip
-                    </p>
-                  </div>
+                  <strong className="font-mono text-lg">{project.metric.value}</strong>
+                  <span className="text-xs font-medium">{project.metric.label}</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden="true" />
+                </a>
+              )}
 
-                  {/* Back: your description + links */}
-                  <div
-                    className="absolute inset-0 flex flex-col rounded-2xl border border-border bg-card p-6 shadow-md"
-                    style={{
-                      backfaceVisibility: "hidden",
-                      WebkitBackfaceVisibility: "hidden",
-                      transform: "rotateY(180deg)",
-                    }}
-                  >
-                    <p className="flex-1 overflow-y-auto text-sm text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="mt-4 flex flex-shrink-0 flex-wrap gap-2">
-                      {project.github && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="gap-1.5"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Github className="h-4 w-4" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                      {project.liveUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="gap-1.5"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            {project.liveUrl.includes("colab.research.google.com")
-                              ? "Colab"
-                              : "Demo"}
-                          </a>
-                        </Button>
-                      )}
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setFlipped(null);
-                        }}
-                        className="gap-1.5"
-                        title="Flip back"
-                      >
-                        <RotateCcw className="h-4 w-4" />
-                        Back
-                      </Button>
-                    </div>
-                  </div>
-                </motion.article>
-              </motion.div>
-            );
-          })}
+              <div className="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">Research question</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground">{project.question}</p>
+              </div>
+
+              <div className="mt-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
+                  {i === 0 ? "My contribution" : "What I built"}
+                </p>
+                <ul className="mt-3 space-y-2 border-l-2 border-accent/30 pl-4 text-sm leading-relaxed text-muted-foreground">
+                  {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                </ul>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.tech.slice(0, 5).map((tech) => (
+                  <span key={tech} className="rounded-md border border-border bg-muted/50 px-2.5 py-1 font-mono text-[11px] text-foreground">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-auto flex flex-wrap gap-5 pt-7 text-sm font-semibold text-accent">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                  <Github className="h-4 w-4" /> View project <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

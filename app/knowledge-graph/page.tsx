@@ -13,7 +13,7 @@ export default function KnowledgeGraphPage() {
               My Digital Brain
             </h1>
             <p className="text-muted-foreground text-sm">
-              Education, skills, experience, projects & certifications — all connected. Click a node to focus, click background to reset, drag nodes to explore.
+              Education, skills, experience, projects and certifications — all connected. Drag to explore, switch layouts or click the background to reset the view.
             </p>
             <KnowledgeGraph data={DIGITAL_BRAIN_DATA} height={500} />
           </section>

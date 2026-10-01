@@ -1,113 +1,78 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  Award,
-  Brain,
-  BriefcaseBusiness,
-  Home,
-  Mail,
-  Shapes,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", Icon: Home, ariaLabel: "Home" },
-  { href: "/#knowledge-graph", Icon: Brain, ariaLabel: "Digital Brain" },
-  { href: "/#professional", Icon: BriefcaseBusiness, ariaLabel: "Professional" },
-  { href: "/#projects", Icon: Shapes, ariaLabel: "Projects" },
-  { href: "/#certifications", Icon: Award, ariaLabel: "Certifications" },
-  { href: "/#contact", Icon: Mail, ariaLabel: "Contact" },
+  { href: "/#knowledge-graph", label: "Digital brain" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#certifications", label: "Credentials" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50"
-    >
-      <TooltipProvider>
-        <div className="flex justify-center px-2 pt-2 sm:px-4 sm:pt-3 lg:px-8">
-          <div
-            className={cn(
-              "w-fit overflow-hidden rounded-2xl bg-background/80 backdrop-blur-xl border border-border/70 shadow-lg transition-all duration-300",
-              isScrolled ? "shadow-md" : "shadow-sm"
-            )}
-          >
-            <nav className="flex items-center justify-center px-2 py-2 sm:px-3 sm:py-3">
-              <div className="flex items-center justify-center gap-1 sm:gap-2">
-                {/* Desktop nav - icon buttons centered */}
-                <div className="hidden md:flex items-center gap-1">
-                  {NAV_LINKS.map((link) => (
-                    <Tooltip key={link.href}>
-                      <TooltipTrigger asChild>
-                        <Button
-                          asChild
-                          variant="ghost"
-                          size="icon"
-                          className={cn(
-                            "size-11 rounded-xl bg-background/40 hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-200 transform-gpu hover:scale-110",
-                            "[&_svg]:size-4 text-muted-foreground hover:text-foreground"
-                          )}
-                          aria-label={link.ariaLabel}
-                        >
-                          <Link href={link.href}>
-                            <link.Icon />
-                          </Link>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>{link.ariaLabel}</TooltipContent>
-                    </Tooltip>
-                  ))}
-                </div>
-
-                {/* Mobile nav - horizontal row of smaller icon links */}
-                <div className="flex md:hidden items-center gap-1">
-                  {NAV_LINKS.map((link) => (
-                    <Button
-                      key={link.href}
-                      asChild
-                      variant="ghost"
-                      size="icon"
-                      className={cn(
-                        "size-9 rounded-xl bg-background/40 hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-200 transform-gpu hover:scale-110",
-                        "[&_svg]:size-4 text-muted-foreground hover:text-foreground"
-                      )}
-                      aria-label={link.ariaLabel}
-                    >
-                      <Link href={link.href}>
-                        <link.Icon />
-                      </Link>
-                    </Button>
-                  ))}
-                </div>
-
-                <ThemeToggle className="hidden sm:flex md:flex" />
-              </div>
-            </nav>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
+      <nav
+        aria-label="Main navigation"
+        className={cn(
+          "relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border bg-background/90 px-4 py-2.5 backdrop-blur-xl transition-shadow sm:px-5",
+          isScrolled ? "shadow-lg" : "shadow-sm"
+        )}
+      >
+        <Link href="/" className="shrink-0 font-mono text-sm font-bold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+          <span className="text-accent">&lt;</span>matthew.thom<span className="text-accent">/&gt;</span>
+        </Link>
+        <div className="hidden items-center gap-1 lg:flex">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              {link.label}
+            </Link>
+          ))}
         </div>
-      </TooltipProvider>
-    </motion.header>
+        <div className="flex items-center gap-1">
+          <ThemeToggle className="flex h-9 w-9 shrink-0" />
+          <button
+            type="button"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-controls="mobile-navigation"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+          </button>
+        </div>
+        {isMenuOpen && (
+          <div id="mobile-navigation" className="absolute inset-x-0 top-full mt-2 grid gap-1 rounded-2xl border border-border bg-background p-2 shadow-lg lg:hidden">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-lg px-4 py-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </nav>
+    </header>
   );
 }

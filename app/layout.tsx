@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "Thom Man Hei Matthew",
   description:
-    "Data Science student @ City University of Hong Kong. Building AI agents & LLM systems. Data Analysis Assistant @ AS Watson Group.",
+    "Matthew Thom is a Data Science student in Hong Kong exploring AI through research, model evaluation and hands-on projects.",
 };
 
 export default function RootLayout({
@@ -17,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen bg-background text-foreground`}
         suppressHydrationWarning
       >
-        <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
           {children}
         </ThemeProvider>
         {process.env.NEXT_PUBLIC_GITHUB_PAGES === "true" ? null : <Analytics />}

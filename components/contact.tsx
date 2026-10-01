@@ -8,9 +8,10 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8"
+      className="relative scroll-mt-24 border-t border-border bg-card/50 py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-3xl text-center">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">06 / say hello</p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -34,23 +34,34 @@ interface KnowledgeGraphProps {
   height?: number;
 }
 
-function toReagraphData(data: KnowledgeGraphData) {
-  const nodeColors: Record<string, string> = {
-    education: "#3b82f6",
-    skill: "#10b981",
-    experience: "#f59e0b",
-    role: "#8b5cf6",
-    project: "#ec4899",
-    certification: "#06b6d4",
-    issuer: "#6b7280",
-    domain: "#6366f1",
-  };
+const NODE_COLORS: Record<string, string> = {
+  education: "#3b82f6",
+  skill: "#10b981",
+  experience: "#f59e0b",
+  role: "#8b5cf6",
+  project: "#ec4899",
+  certification: "#06b6d4",
+  issuer: "#6b7280",
+  domain: "#6366f1",
+};
 
+const LEGEND_ITEMS = [
+  ["Education", "education"],
+  ["Skills", "skill"],
+  ["Experience", "experience"],
+  ["Roles", "role"],
+  ["Projects", "project"],
+  ["Certifications", "certification"],
+  ["Issuers", "issuer"],
+  ["Domains", "domain"],
+] as const;
+
+function toReagraphData(data: KnowledgeGraphData) {
   const nodes = data.nodes.map((n) => ({
     id: n.id,
     label: n.name,
     size: n.val ?? 6,
-    fill: nodeColors[n.group ?? "skill"] ?? "#64748b",
+    fill: NODE_COLORS[n.group ?? "skill"] ?? "#64748b",
   }));
 
   const edges = data.links.map((link, i) => ({
@@ -96,6 +107,7 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
           variant={layoutType === "forceDirected2d" ? "default" : "outline"}
           size="sm"
           onClick={() => setLayoutType("forceDirected2d")}
+          aria-pressed={layoutType === "forceDirected2d"}
           className={cn(
             "gap-1.5",
             layoutType === "forceDirected2d" && "ring-2 ring-accent/50"
@@ -108,6 +120,7 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
           variant={layoutType === "forceDirected3d" ? "default" : "outline"}
           size="sm"
           onClick={() => setLayoutType("forceDirected3d")}
+          aria-pressed={layoutType === "forceDirected3d"}
           className={cn(
             "gap-1.5",
             layoutType === "forceDirected3d" && "ring-2 ring-accent/50"
@@ -119,6 +132,15 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
         <Button variant="outline" size="sm" onClick={handleFitView}>
           Fit view
         </Button>
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-2 text-xs text-muted-foreground">
+        <span className="font-mono text-[10px] uppercase tracking-[0.14em]">Node colors</span>
+        {LEGEND_ITEMS.map(([label, group]) => (
+          <span key={group} className="inline-flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: NODE_COLORS[group] }} aria-hidden="true" />
+            {label}
+          </span>
+        ))}
       </div>
       <div
         className="relative w-full overflow-hidden rounded-lg border border-border bg-background shrink-0"

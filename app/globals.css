@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
+    --background: 160 20% 98%;
+    --foreground: 168 23% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --accent: 0 0% 9%;
+    --card-foreground: 168 23% 11%;
+    --muted: 166 14% 93%;
+    --muted-foreground: 168 9% 37%;
+    --border: 165 12% 84%;
+    --input: 165 12% 84%;
+    --primary: 169 85% 29%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 169 85% 29%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover-foreground: 168 23% 11%;
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --accent: 0 0% 100%;
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 100%;
+    --background: 220 16% 7%;
+    --foreground: 180 7% 94%;
+    --card: 220 14% 10%;
+    --card-foreground: 180 7% 94%;
+    --muted: 220 12% 16%;
+    --muted-foreground: 180 6% 68%;
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --primary: 162 82% 63%;
+    --primary-foreground: 220 16% 7%;
+    --accent: 162 82% 63%;
+    --popover: 220 14% 10%;
+    --popover-foreground: 180 7% 94%;
   }
 }
 
@@ -49,25 +49,22 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes tech-stack-scroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
+.lab-grid {
+  background-image:
+    linear-gradient(hsl(var(--accent) / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--accent) / 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-/* Scroll viewport: isolate painting so only this area repaints */
-.tech-stack-viewport {
-  contain: paint layout;
-  transform: translateZ(0);
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.animate-tech-scroll {
-  width: max-content;
-  animation: tech-stack-scroll 30s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-  contain: layout;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

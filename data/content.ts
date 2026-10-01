@@ -144,30 +144,75 @@ export const techIcons: Record<string, string> = {
   "Hugging Face": "https://cdn.simpleicons.org/huggingface/FFD21E",
 };
 
-export const projects = [
+export interface Project {
+  title: string;
+  category: string;
+  summary: string;
+  question: string;
+  highlights: string[];
+  tech: string[];
+  github: string;
+  metric?: { value: string; label: string; url: string };
+}
+
+// Mirrors the first four pinned repositories on Matthew's GitHub profile.
+export const projects: Project[] = [
   {
-    title: "Agentic Research Paper Reader",
-    description:
-      "Agentic Research Paper Reader is a multi-agent research assistant that understands natural-language research queries, searches arXiv + OpenAlex + Crossref + Tavily, stores papers in Supabase + pgvector, ranks and reflects on results, and lets you select papers for deeper analysis and insight synthesis. The system is built with FastAPI, uses DeepSeek for reasoning (and optional embeddings), and includes a small HTML/JS frontend.",
-    tech: ["Python", "FastAPI", "Supabase", "DeepSeek LLM", "Tavily", "JavaScript", "PostgreSQL"],
-    github: "https://github.com/m21hm9/Autonomous-Research-Agent-v1",
-    liveUrl: null as string | null,
+    title: "torch-molecule",
+    category: "Open source / molecular AI",
+    summary:
+      "Contributing to an open-source Python package that makes molecular prediction, generation and representation models easier to use.",
+    question: "How can molecular AI models become easier to use in practical research?",
+    highlights: [
+      "Integrated pretrained molecular generators, including NovoMolGen, MolGen, Molexar and SAFE-GPT.",
+      "Contributed dataset splitting modules for molecular machine-learning workflows.",
+    ],
+    tech: ["Python", "PyTorch", "Molecular AI", "Open source"],
+    github: "https://github.com/m21hm9/torch-molecule",
+    metric: {
+      value: "20K+",
+      label: "lifetime PyPI downloads for the package",
+      url: "https://pepy.tech/projects/torch-molecule",
+    },
   },
   {
-    title: "Legal Reasoning LLM (Llama-3 Fine-tune)",
-    description:
-      "Developed \"Headnote LLM\", a domain-specific 8B-parameter model by fine-tuning Meta Llama-3.1 on 10k+ legal judgment datasets. Achieved state-of-the-art performance on legal reasoning tasks while adding only ∼168 MB of trainable parameters via LoRA adapters.",
-    tech: ["Python", "PyTorch", "Hugging Face", "LoRA"],
-    github: "https://github.com/m21hm9/Legal-Reasoning-LLM",
-    liveUrl: null as string | null,
+    title: "Autonomous Research Agent v0",
+    category: "AI agents / research tools",
+    summary:
+      "A LangGraph research assistant that breaks a broad question into targeted searches and assembles a sourced report.",
+    question: "Can an AI agent turn an open-ended topic into a sourced research report?",
+    highlights: [
+      "Uses DeepSeek to generate queries and Tavily to search them in parallel.",
+      "Reflects on research completeness before producing a Markdown report through a Streamlit interface.",
+    ],
+    tech: ["Python", "LangGraph", "DeepSeek LLM", "Tavily", "Streamlit"],
+    github: "https://github.com/m21hm9/Autonomous-Research-Agent-v0",
+  },
+  {
+    title: "Time-Series Anomaly Detection",
+    category: "Machine learning / data pipelines",
+    summary:
+      "A modular pipeline for finding unusual behavior in univariate and multivariate time-series data.",
+    question: "How can different models detect unusual patterns in time-series data?",
+    highlights: [
+      "Combines preprocessing, sliding windows and detectors such as Isolation Forest, One-Class SVM and autoencoders.",
+      "Includes threshold selection, evaluation metrics and visualizations for inspecting detection quality.",
+    ],
+    tech: ["Python", "Scikit-learn", "TensorFlow", "Jupyter"],
+    github: "https://github.com/m21hm9/Anomaly-Detection-in-Time-Series-Data",
   },
   {
     title: "Reversible Semantic Anchor (RSA)",
-    description:
-      "RSA is an experimental framework for preserving semantic intent across multi-agent handoffs using a compressed latent anchor instead of raw text-only transfer. It includes a 6-layer Transformer encoder, decoder reconstruction pipeline, and training/testing/stress workflows for reversibility and drift evaluation.",
+    category: "AI research / experiments",
+    summary:
+      "An experimental approach to preserving meaning when information moves between AI agents through a compact latent representation.",
+    question: "Can a compact latent anchor preserve intent across multiple AI handoffs?",
+    highlights: [
+      "Built a six-layer Transformer encoder and decoder reconstruction pipeline.",
+      "Added training, drift evaluation and stress-test workflows for multi-step handoffs.",
+    ],
     tech: ["Python", "PyTorch", "Transformers", "Hugging Face"],
     github: "https://github.com/m21hm9/Reversible-Semantic-Anchor",
-    liveUrl: null as string | null,
   },
 ];
 

@@ -1,14 +1,15 @@
 # Thom Man Hei Matthew — Personal Portfolio
 
-A single-page portfolio built with **Next.js 15** (App Router), **TypeScript**, **Tailwind CSS**, **Geist** fonts, **Framer Motion**, and **Lucide icons**.
+A personal portfolio built with **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS**, **Geist** fonts, **Framer Motion**, and **Lucide icons**.
 
 ## Features
 
-- Single-page scroll layout with sticky navigation
-- Sections: Hero, About, Professional (Education, Tech stack, Experience), Key Projects, Certifications, Contact
-- Dark / light mode toggle with system preference support
-- Tech stack icons (Simple Icons CDN) and flip cards for projects
-- Responsive layout and optimized images via `next/image`
+- Single-page layout with a clear introduction and featured projects near the top
+- Sections: Projects, Professional (Education, Tech stack, Experience), Digital Brain, Certifications, Contact
+- Interactive particle portrait and 2D/3D knowledge graph
+- Dark-first theme with a light mode toggle
+- Categorized toolkit and research-note cards for the four pinned GitHub repositories
+- Responsive layout and keyboard-friendly controls
 
 ## Setup
 
@@ -38,14 +39,14 @@ npm run build
 npm start
 ```
 
-## Deploy (Vercel)
+## Deploy
 
-- Connect the repo to [Vercel](https://vercel.com); default Next.js settings (build: `npm run build`, output: Next.js default) work as-is.
-- Optional: add a custom domain and environment variables in the Vercel project settings.
+- The included GitHub Actions workflow builds a static export and deploys `out/` to GitHub Pages when changes are pushed to `master`.
+- For Vercel, connect the repository and use the default Next.js build settings. The static export is enabled only when `GITHUB_PAGES=true`.
 
 ## Tech stack
 
-- **Next.js 15** (App Router)
+- **Next.js 16** (App Router)
 - **TypeScript**
 - **Tailwind CSS**
 - **Geist** (sans & mono) via `geist` package
@@ -55,6 +56,6 @@ npm start
 
 ## Project structure
 
-- `app/` — layout, global styles, root page
-- `components/` — Nav, Hero, About, Professional, Projects, Certifications, Contact, theme toggle, UI primitives
+- `app/` — layout, global styles, root page, knowledge graph route
+- `components/` — navigation, sections, particle portrait, knowledge graph, theme toggle, UI primitives
 - `data/content.ts` — all copy and links (education, skills, experience, projects, certifications, contact)

@@ -1,279 +1,97 @@
-"use client";
+import { BriefcaseBusiness, ChevronDown, GraduationCap } from "lucide-react";
+import { education, experience, skillGroups } from "@/data/content";
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Briefcase, LayoutGrid, X, ChevronDown } from "lucide-react";
-import { education, skillGroups, skills, experience } from "@/data/content";
-import { cn, withBasePath } from "@/lib/utils";
-
-export function Professional() {
-  const [showAllTech, setShowAllTech] = useState(false);
-  const [expandedExperience, setExpandedExperience] = useState<Set<number>>(new Set());
+export function Skills() {
   return (
-    <section
-      id="professional"
-      className="relative scroll-mt-24 py-20 px-4 sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto max-w-5xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-        >
-          Professional
-        </motion.h2>
+    <section id="skills" className="scroll-mt-24 px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">02 / foundations</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Skills and education.</h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+          The tools I use and the studies shaping my work in AI and data science.
+        </p>
 
-        {/* Education card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.4, delay: 0.05 }}
-          className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-sm"
-        >
-          <h3 className="flex items-center gap-2 text-xl font-semibold text-foreground">
-            <GraduationCap className="h-5 w-5 text-accent" />
-            Education
-          </h3>
-          <ul className="mt-4 space-y-4">
-            {education.map((item, i) => (
-              <li key={i} className="border-l-2 border-accent/30 pl-4">
-                <p className="font-medium text-foreground">{item.school}</p>
-                <p className="text-sm text-muted-foreground">{item.degree}</p>
-                <p className="text-xs text-muted-foreground">{item.period}</p>
-                {item.description && (
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Tech stack — Hailey style: single horizontal bar with logos */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-sm"
-        >
-          <h3 className="text-xl font-semibold text-foreground">Tech stack</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Technologies and tools I work with to build innovative solutions.
-          </p>
-          <div className="tech-stack-viewport mt-5 overflow-hidden rounded-xl bg-background px-6 py-5">
-            <AnimatePresence mode="wait">
-              {!showAllTech ? (
-                <motion.div
-                  key="scroll"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex flex-col"
-                >
-                  <div className="flex w-max flex-nowrap items-center gap-6 pb-1 pt-1 animate-tech-scroll">
-                    {[...skills, ...skills].map((skill, i) => (
-                      <div
-                        key={`${skill.name}-${i}`}
-                        className="flex shrink-0 items-center justify-center"
-                        title={skill.name}
-                      >
-                        {"image" in skill && skill.image ? (
-                          <span className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-xl bg-background/80">
-                            <Image
-                              src={withBasePath(skill.image)}
-                              alt=""
-                              width={84}
-                              height={84}
-                              className={cn(
-                                "h-[84px] w-[84px] object-contain",
-                                (skill.name === "Next.js" || skill.name === "Vercel") &&
-                                  "dark:invert"
-                              )}
-                              unoptimized
-                              decoding="async"
-                              draggable={false}
-                            />
-                          </span>
-                        ) : (
-                          <span className="flex h-[120px] w-[120px] items-center justify-center rounded-xl bg-background/80 text-sm font-medium text-muted-foreground">
-                            {skill.name.slice(0, 2)}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setShowAllTech(true)}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                      aria-label="View all technologies"
-                    >
-                      <LayoutGrid className="h-4 w-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="grid"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex flex-col"
-                >
-                  <div className="space-y-8">
-                    {skillGroups.map((group) => (
-                      <div key={group.title}>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                          {group.title}
-                        </h4>
-                        <div className="mt-3 grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
-                          {group.skills.map((skill) => (
-                            <div
-                              key={`${group.title}-${skill.name}`}
-                              className="flex flex-col items-center gap-2 rounded-xl bg-background/80 p-3 transition-colors hover:bg-background"
-                            >
-                              {"image" in skill && skill.image ? (
-                                <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-lg">
-                                  <Image
-                                    src={withBasePath(skill.image)}
-                                    alt=""
-                                    width={72}
-                                    height={72}
-                                    className={cn(
-                                      "h-[72px] w-[72px] object-contain",
-                                      (skill.name === "Next.js" ||
-                                        skill.name === "Vercel") &&
-                                        "dark:invert"
-                                    )}
-                                    unoptimized
-                                  />
-                                </span>
-                              ) : (
-                                <span className="flex h-24 w-24 items-center justify-center rounded-lg bg-muted/50 text-sm font-medium text-muted-foreground">
-                                  {skill.name.slice(0, 2)}
-                                </span>
-                              )}
-                              <span className="text-center text-xs font-medium text-foreground leading-tight">
-                                {skill.name}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setShowAllTech(false)}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/60 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                      aria-label="Close and show scrolling bar"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+        <div className="mt-10 grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <div className="flex items-center gap-3">
+              <GraduationCap className="h-5 w-5 text-accent" aria-hidden="true" />
+              <h3 className="text-xl font-semibold text-foreground">Education</h3>
+            </div>
+            <div className="mt-7 space-y-6">
+              {education.map((item) => (
+                <div key={item.school} className="border-l-2 border-accent/50 pl-4">
+                  <p className="font-semibold text-foreground">{item.school}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.degree}</p>
+                  <p className="mt-3 font-mono text-xs text-accent">{item.period}</p>
+                  {item.description && <p className="mt-1 text-xs text-muted-foreground">{item.description}</p>}
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.div>
 
-        {/* Experience — Cool Places I Worked At style: click to expand/collapse */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-sm"
-        >
-          <h3 className="flex items-center gap-2 text-xl font-semibold text-foreground">
-            <Briefcase className="h-5 w-5 text-accent" />
-            Experiences
-          </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Click an experience to expand and see what I did there.
-          </p>
-          <div className="mt-6 space-y-2">
-            {experience.map((job, i) => {
-              const isExpanded = expandedExperience.has(i);
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className="overflow-hidden rounded-xl border border-border bg-background/50 transition-colors hover:bg-background/80"
-                >
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setExpandedExperience((prev) => {
-                        const next = new Set(prev);
-                        if (isExpanded) next.delete(i);
-                        else next.add(i);
-                        return next;
-                      })
-                    }
-                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-xl"
-                    aria-expanded={isExpanded}
-                    aria-controls={`experience-details-${i}`}
-                    id={`experience-trigger-${i}`}
-                  >
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-lg font-semibold text-foreground">
-                        {job.company}
-                      </h4>
-                      <p className="mt-0.5 text-sm text-accent">{job.role}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {job.period}
-                        {"location" in job && job.location
-                          ? ` · ${job.location}`
-                          : ""}
-                      </p>
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <div className="flex items-baseline justify-between gap-3">
+              <h3 className="text-xl font-semibold text-foreground">Toolkit</h3>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">tools & methods</span>
+            </div>
+            <div className="mt-5 divide-y divide-border">
+              {skillGroups.map((group, i) => (
+                <div key={group.title} className="grid gap-3 py-4 sm:grid-cols-[130px_1fr]">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-mono text-[10px] text-accent">{String(i + 1).padStart(2, "0")}</span>
+                    <h4 className="font-mono text-xs font-semibold uppercase tracking-wide text-foreground">{group.title}</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span key={skill.name} className="rounded-md border border-border bg-muted/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground">
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Experience() {
+  return (
+    <section id="experience" className="scroll-mt-24 border-t border-border px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">03 / experience</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Experience.</h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">Selected roles and the work behind them.</p>
+        <div className="mt-10">
+          <div className="flex items-center gap-3">
+            <BriefcaseBusiness className="h-5 w-5 text-accent" aria-hidden="true" />
+            <h3 className="text-xl font-semibold text-foreground">Experience</h3>
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">Open a role to see the work.</p>
+          <div className="mt-5 space-y-3">
+            {experience.map((job, i) => (
+              <details key={job.company} className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm open:border-accent/40">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent [&::-webkit-details-marker]:hidden sm:px-6">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <span className="font-mono text-[10px] text-accent">{String(i + 1).padStart(2, "0")}</span>
+                      <h4 className="text-base font-semibold text-foreground sm:text-lg">{job.company}</h4>
+                      <span className="text-sm text-muted-foreground">{job.role}</span>
                     </div>
-                    <motion.span
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="shrink-0 text-muted-foreground"
-                    >
-                      <ChevronDown className="h-5 w-5" />
-                    </motion.span>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isExpanded && (
-                      <motion.div
-                        id={`experience-details-${i}`}
-                        role="region"
-                        aria-labelledby={`experience-trigger-${i}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="border-t border-border"
-                      >
-                        <ul className="list-inside list-disc space-y-1 px-4 py-3 text-sm text-muted-foreground">
-                          {job.bullets.map((bullet, j) => (
-                            <li key={j}>{bullet}</li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
+                    <p className="mt-1 pl-7 font-mono text-xs text-muted-foreground">{job.period} · {job.location}</p>
+                  </div>
+                  <ChevronDown className="h-5 w-5 shrink-0 text-accent transition-transform group-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <ul className="space-y-2 border-t border-border px-6 py-5 pl-12 text-sm leading-relaxed text-muted-foreground sm:pl-14">
+                  {job.bullets.map((bullet) => <li key={bullet} className="list-disc">{bullet}</li>)}
+                </ul>
+              </details>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
