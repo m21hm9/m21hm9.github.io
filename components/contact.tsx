@@ -1,90 +1,57 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Phone } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { contact } from "@/data/content";
+
+const contactLinks = [
+  { label: "Email", detail: contact.email, href: `mailto:${contact.email}`, icon: Mail },
+  { label: "LinkedIn", detail: "Matthew Thom", href: contact.linkedin, icon: Linkedin },
+  { label: "GitHub", detail: "m21hm9", href: contact.github, icon: Github },
+  { label: "Phone", detail: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}`, icon: Phone },
+];
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      className="relative scroll-mt-24 border-t border-border bg-card/50 py-24 px-4 sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">06 / say hello</p>
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-        >
-          Get in Touch
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, delay: 0.05 }}
-          className="mt-4 text-muted-foreground"
-        >
-          Have a question or want to collaborate? I&apos;d love to hear from
-          you.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
-        >
-          {"phone" in contact && contact.phone && (
-            <a
-              href={`tel:${contact.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-foreground transition-colors hover:border-accent/50 hover:bg-muted/50"
-            >
-              <Phone className="h-5 w-5 text-accent" />
-              <span>Phone</span>
-            </a>
-          )}
-          <a
-            href={`mailto:${contact.email}`}
-            className="flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-foreground transition-colors hover:border-accent/50 hover:bg-muted/50"
-          >
-            <Mail className="h-5 w-5 text-accent" />
-            <span>Email</span>
-          </a>
-          <a
-            href={contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-foreground transition-colors hover:border-accent/50 hover:bg-muted/50"
-          >
-            <Linkedin className="h-5 w-5 text-accent" />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href={contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-foreground transition-colors hover:border-accent/50 hover:bg-muted/50"
-          >
-            <Github className="h-5 w-5 text-accent" />
-            <span>GitHub</span>
-          </a>
-          {"huggingface" in contact && contact.huggingface && (
+    <section id="contact" className="scroll-mt-24 border-t border-border bg-card/40 px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">06 / contact.sh</p>
+        <div className="workbench-frame relative mt-6 grid overflow-hidden rounded-xl border border-border md:grid-cols-[0.85fr_1.15fr]">
+          <div className="border-b border-border p-6 sm:p-8 md:border-b-0 md:border-r">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">open channel / collaboration</p>
+            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Get in touch.</h2>
+            <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">Have a question or want to collaborate? I&apos;d love to hear from you.</p>
+            <p className="mt-10 font-mono text-[11px] text-muted-foreground"><span className="text-accent">$</span> choose a channel →</p>
+          </div>
+          <div className="divide-y divide-border">
+            {contactLinks.map(({ label, detail, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:px-8"
+              >
+                <Icon className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                <span className="min-w-0 flex-1">
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{label}</span>
+                  <span className="mt-1 block truncate text-sm font-medium text-foreground">{detail}</span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" aria-hidden="true" />
+              </a>
+            ))}
             <a
               href={contact.huggingface}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-foreground transition-colors hover:border-accent/50 hover:bg-muted/50"
+              className="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:px-8"
             >
-              <span className="text-accent font-medium">HF</span>
-              <span>HuggingFace</span>
+              <span className="w-4 shrink-0 font-mono text-xs font-semibold text-accent">HF</span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Hugging Face</span>
+                <span className="mt-1 block text-sm font-medium text-foreground">matt2py2</span>
+              </span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" aria-hidden="true" />
             </a>
-          )}
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

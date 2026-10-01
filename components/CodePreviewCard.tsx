@@ -16,7 +16,7 @@ export function CodePreviewCard() {
       </div>
       <div className="code-preview-body">
         <p className="code-preview-command"><span aria-hidden="true">$</span> whoami</p>
-        <p className="code-preview-output">Matthew Thom · BSc Data Science at CityUHK</p>
+        <p className="code-preview-output">Matthew Thom · data science / AI / Hong Kong</p>
         <p className="code-preview-command"><span aria-hidden="true">$</span> cat interests.txt</p>
         <p className="code-preview-output">AI research / model evaluation / data science</p>
         <p className="code-preview-command"><span aria-hidden="true">$</span> open github</p>

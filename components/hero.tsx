@@ -5,21 +5,21 @@ import { ParticleFace } from "@/components/ParticleFace";
 
 export function Hero() {
   return (
-    <section id="hero" className="lab-grid relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40">
+    <section id="hero" className="lab-grid relative overflow-hidden border-b border-border px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40">
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
         <div className="relative z-10">
-          <p className="mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-2 font-mono text-xs tracking-wide text-muted-foreground shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-            DATA SCIENCE · AI · HONG KONG
-          </p>
+          <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em]">
+            <span className="flex items-center gap-2 text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />00 / profile</span>
+            <span className="text-muted-foreground">AI · data science · Hong Kong</span>
+          </div>
           <h1 className="max-w-3xl text-5xl font-semibold leading-[1.06] tracking-[-0.055em] text-foreground sm:text-6xl xl:text-7xl">
             Hi, I&apos;m <span className="text-accent">Matthew Thom.</span>
           </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="mt-8 max-w-xl border-l-2 border-accent pl-5 text-lg leading-relaxed text-foreground/90 sm:text-xl">
             I build AI projects that help explore research, evaluate models and understand data.
           </p>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Data Science student at City University of Hong Kong, with experience in analytics, model evaluation and applied AI.
+          <p className="mt-5 max-w-xl pl-[22px] text-sm leading-relaxed text-muted-foreground">
+            My work spans analytics, model evaluation and applied AI, with a focus on practical experiments and clear results.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
@@ -40,12 +40,20 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-lg">
-          <div className="absolute inset-x-10 inset-y-12 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
-          <ParticleFace />
-          <p className="absolute bottom-2 right-2 rounded-full border border-border bg-card/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground shadow-sm sm:bottom-4">
-            interactive portrait / click to scatter
-          </p>
+        <div className="workbench-frame relative mx-auto w-full max-w-lg overflow-hidden rounded-xl border border-border">
+          <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:px-5">
+            <span><span className="text-accent">fig. 01</span> / particle portrait</span>
+            <span className="hidden sm:inline">interactive study</span>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-x-10 inset-y-12 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
+            <ParticleFace />
+            <div className="portrait-scan absolute inset-0" aria-hidden="true" />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:px-5">
+            <span>input: click or tap to scatter</span>
+            <span className="text-accent">render: particles</span>
+          </div>
         </div>
       </div>
     </section>

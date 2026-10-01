@@ -101,15 +101,16 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
   }, [theme, layoutType]);
 
   return (
-    <div className="space-y-2">
-      <div className="flex flex-wrap gap-2">
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">view.mode /</span>
         <Button
           variant={layoutType === "forceDirected2d" ? "default" : "outline"}
           size="sm"
           onClick={() => setLayoutType("forceDirected2d")}
           aria-pressed={layoutType === "forceDirected2d"}
           className={cn(
-            "gap-1.5",
+            "h-8 gap-1.5 rounded-md px-3 font-mono text-[11px]",
             layoutType === "forceDirected2d" && "ring-2 ring-accent/50"
           )}
         >
@@ -122,28 +123,19 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
           onClick={() => setLayoutType("forceDirected3d")}
           aria-pressed={layoutType === "forceDirected3d"}
           className={cn(
-            "gap-1.5",
+            "h-8 gap-1.5 rounded-md px-3 font-mono text-[11px]",
             layoutType === "forceDirected3d" && "ring-2 ring-accent/50"
           )}
         >
           <Box className="h-4 w-4" />
           3D
         </Button>
-        <Button variant="outline" size="sm" onClick={handleFitView}>
+        <Button variant="outline" size="sm" onClick={handleFitView} className="h-8 rounded-md px-3 font-mono text-[11px]">
           Fit view
         </Button>
       </div>
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-2 text-xs text-muted-foreground">
-        <span className="font-mono text-[10px] uppercase tracking-[0.14em]">Node colors</span>
-        {LEGEND_ITEMS.map(([label, group]) => (
-          <span key={group} className="inline-flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: NODE_COLORS[group] }} aria-hidden="true" />
-            {label}
-          </span>
-        ))}
-      </div>
       <div
-        className="relative w-full overflow-hidden rounded-lg border border-border bg-background shrink-0"
+        className="relative w-full shrink-0 overflow-hidden rounded-md border border-border bg-background"
         style={{ width: "100%", height, minHeight: 400 }}
       >
         {theme ? (
@@ -171,6 +163,15 @@ export function KnowledgeGraph({ data, height = 500 }: KnowledgeGraphProps) {
             <span className="text-sm text-muted-foreground">Loading graph...</span>
           </div>
         )}
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1 font-mono text-[11px] text-muted-foreground">
+        <span className="text-[10px] uppercase tracking-[0.14em]">node.type /</span>
+        {LEGEND_ITEMS.map(([label, group]) => (
+          <span key={group} className="inline-flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: NODE_COLORS[group] }} aria-hidden="true" />
+            {label}
+          </span>
+        ))}
       </div>
     </div>
   );

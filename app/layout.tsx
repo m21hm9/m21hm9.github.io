@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "Thom Man Hei Matthew",
   description:
-    "Matthew Thom is a Data Science student in Hong Kong exploring AI through research, model evaluation and hands-on projects.",
+    "Matthew Thom explores AI through research, model evaluation and hands-on data science projects.",
 };
 
 export default function RootLayout({
