@@ -6,14 +6,6 @@ import { withBasePath } from "@/lib/utils";
 
 const PHOTOS = [
   {
-    src: "/photos/self(1).png",
-    alt: "Matthew Thom",
-  },
-  {
-    src: "/photos/self(2).png",
-    alt: "Matthew Thom at West Kowloon Art Park, Hong Kong",
-  },
-  {
     src: "/photos/food-1.png",
     alt: "Hot pot with sliced beef",
   },

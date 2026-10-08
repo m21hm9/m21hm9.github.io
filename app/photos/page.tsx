@@ -5,7 +5,7 @@ import { PhotoGallery } from "@/components/photo-gallery";
 
 export const metadata: Metadata = {
   title: "Photos · Thom Man Hei Matthew",
-  description: "A few photos of Matthew Thom.",
+  description: "Food photos from Matthew Thom.",
 };
 
 export default function PhotosPage() {
@@ -14,12 +14,12 @@ export default function PhotosPage() {
       <Nav />
       <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">album / self</p>
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">album / food</p>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">A few photos.</h1>
+              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">A few meals.</h1>
               <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-                Just me, away from the projects.
+                Food, away from the projects.
               </p>
             </div>
             <Link
