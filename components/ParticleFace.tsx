@@ -7,6 +7,7 @@ import { withBasePath } from "@/lib/utils";
 const PORTRAIT_SRC = withBasePath("/me.png");
 const SAMPLE_STEP = 3;
 const GATHER_MS = 1500;
+const BURST_MS = 700;
 const STAGGER_MS = 480;
 
 type Sample = {
@@ -153,10 +154,15 @@ function samplePortrait(image: HTMLImageElement) {
         }
       }
       if (hits === 0) continue;
+      const sampleX = sumX / hits;
+      const sampleY = sumY / hits;
+      if (unitNoise(x0 + 4, y0 + 9) > edgeKeep(sampleX, sampleY, width, height)) {
+        continue;
+      }
       const jitter = SAMPLE_STEP * 0.72;
       samples.push({
-        x: sumX / hits + (unitNoise(x0, y0) - 0.5) * jitter,
-        y: sumY / hits + (unitNoise(x0 + 19, y0 + 7) - 0.5) * jitter,
+        x: sampleX + (unitNoise(x0, y0) - 0.5) * jitter,
+        y: sampleY + (unitNoise(x0 + 19, y0 + 7) - 0.5) * jitter,
         r: (red / hits) | 0,
         g: (green / hits) | 0,
         b: (blue / hits) | 0,
@@ -170,6 +176,16 @@ function samplePortrait(image: HTMLImageElement) {
 function unitNoise(x: number, y: number) {
   const value = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
   return value - Math.floor(value);
+}
+
+function edgeKeep(x: number, y: number, width: number, height: number) {
+  const side = width * 0.1;
+  const bottom = height * 0.3;
+  let keep = 1;
+  if (x < side) keep = Math.min(keep, x / side);
+  if (x > width - side) keep = Math.min(keep, (width - x) / side);
+  if (y > height - bottom) keep = Math.min(keep, (height - y) / bottom);
+  return keep;
 }
 
 function easeOutCubic(t: number) {
@@ -210,6 +226,10 @@ export function ParticleFace() {
       const targetY = new Float32Array(count);
       const originX = new Float32Array(count);
       const originY = new Float32Array(count);
+      const endX = new Float32Array(count);
+      const endY = new Float32Array(count);
+      const liveX = new Float32Array(count);
+      const liveY = new Float32Array(count);
       const delay = new Float32Array(count);
       const lightFill = samples.map((sample) => rgb(sample.r, sample.g, sample.b));
       const darkFill = samples.map((sample) =>
@@ -219,19 +239,53 @@ export function ParticleFace() {
       let cssWidth = 0;
       let cssHeight = 0;
       let dot = 2.4;
-      let gatherStart = 0;
+      let motionStart = 0;
+      let motionMs = GATHER_MS;
+      let mode: "burst" | "gather" = "gather";
       let pointerX = -9999;
       let pointerY = -9999;
       let pointerActive = false;
 
-      const scatter = (now: number) => {
-        gatherStart = now;
+      const cloudPosition = (index: number) => {
+        const centerX = cssWidth * 0.5;
+        const centerY = cssHeight * 0.48;
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.sqrt(Math.random());
+        const cloudX = centerX + Math.cos(angle) * cssWidth * 0.34 * radius;
+        const cloudY = centerY + Math.sin(angle) * cssHeight * 0.36 * radius;
+        return {
+          x: targetX[index] * 0.42 + cloudX * 0.58,
+          y: targetY[index] * 0.42 + cloudY * 0.58,
+        };
+      };
+
+      const beginGather = (now: number, fromLive: boolean) => {
+        mode = "gather";
+        motionStart = now;
+        motionMs = GATHER_MS;
         for (let i = 0; i < count; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const distance = 80 + Math.random() * 170;
-          originX[i] = targetX[i] + Math.cos(angle) * distance;
-          originY[i] = targetY[i] + Math.sin(angle) * distance;
+          if (!fromLive) {
+            const cloud = cloudPosition(i);
+            originX[i] = cloud.x;
+            originY[i] = cloud.y;
+          }
+          endX[i] = targetX[i];
+          endY[i] = targetY[i];
           delay[i] = Math.random();
+        }
+      };
+
+      const burst = (now: number) => {
+        mode = "burst";
+        motionStart = now;
+        motionMs = BURST_MS;
+        for (let i = 0; i < count; i++) {
+          originX[i] = liveX[i];
+          originY[i] = liveY[i];
+          const cloud = cloudPosition(i);
+          endX[i] = cloud.x;
+          endY[i] = cloud.y;
+          delay[i] = Math.random() * 0.45;
         }
       };
 
@@ -250,10 +304,11 @@ export function ParticleFace() {
         }
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const pad = 6;
+        const padX = cssWidth * 0.12;
+        const padY = cssHeight * 0.14;
         const scale = Math.min(
-          (cssWidth - pad * 2) / imageWidth,
-          (cssHeight - pad * 2) / imageHeight
+          (cssWidth - padX * 2) / imageWidth,
+          (cssHeight - padY * 2) / imageHeight
         );
         const drawnWidth = imageWidth * scale;
         const drawnHeight = imageHeight * scale;
@@ -263,7 +318,8 @@ export function ParticleFace() {
 
         const settled =
           !restart &&
-          (reduceMotion || performance.now() - gatherStart > GATHER_MS + STAGGER_MS);
+          mode === "gather" &&
+          (reduceMotion || performance.now() - motionStart > motionMs + STAGGER_MS);
 
         for (let i = 0; i < count; i++) {
           targetX[i] = offsetX + samples[i].x * scale;
@@ -271,6 +327,10 @@ export function ParticleFace() {
           if (settled) {
             originX[i] = targetX[i];
             originY[i] = targetY[i];
+            endX[i] = targetX[i];
+            endY[i] = targetY[i];
+            liveX[i] = targetX[i];
+            liveY[i] = targetY[i];
             delay[i] = 0;
           }
         }
@@ -280,11 +340,17 @@ export function ParticleFace() {
             for (let i = 0; i < count; i++) {
               originX[i] = targetX[i];
               originY[i] = targetY[i];
+              endX[i] = targetX[i];
+              endY[i] = targetY[i];
+              liveX[i] = targetX[i];
+              liveY[i] = targetY[i];
               delay[i] = 0;
             }
-            gatherStart = performance.now() - GATHER_MS - STAGGER_MS;
+            mode = "gather";
+            motionStart = performance.now() - GATHER_MS - STAGGER_MS;
+            motionMs = GATHER_MS;
           } else {
-            scatter(performance.now());
+            beginGather(performance.now(), false);
           }
         }
       };
@@ -294,14 +360,33 @@ export function ParticleFace() {
         const fills = themeRef.current === "dark" ? darkFill : lightFill;
         ctx.clearRect(0, 0, cssWidth, cssHeight);
 
+        if (
+          !reduceMotion &&
+          mode === "burst" &&
+          now - motionStart > motionMs + STAGGER_MS * 0.45
+        ) {
+          for (let i = 0; i < count; i++) {
+            originX[i] = endX[i];
+            originY[i] = endY[i];
+            endX[i] = targetX[i];
+            endY[i] = targetY[i];
+            delay[i] = Math.random();
+          }
+          mode = "gather";
+          motionStart = now;
+          motionMs = GATHER_MS;
+        }
+
         for (let i = 0; i < count; i++) {
-          const elapsed = now - gatherStart - delay[i] * STAGGER_MS;
+          const elapsed = now - motionStart - delay[i] * (mode === "burst" ? STAGGER_MS * 0.45 : STAGGER_MS);
           const progress = reduceMotion
             ? 1
-            : Math.min(1, Math.max(0, elapsed / GATHER_MS));
+            : Math.min(1, Math.max(0, elapsed / motionMs));
           const eased = easeOutCubic(progress);
-          let x = originX[i] + (targetX[i] - originX[i]) * eased;
-          let y = originY[i] + (targetY[i] - originY[i]) * eased;
+          let x = originX[i] + (endX[i] - originX[i]) * eased;
+          let y = originY[i] + (endY[i] - originY[i]) * eased;
+          liveX[i] = x;
+          liveY[i] = y;
 
           if (!reduceMotion && progress >= 1) {
             x += Math.sin(now * 0.0014 + i * 0.37) * 0.55;
@@ -343,7 +428,7 @@ export function ParticleFace() {
       };
       const onClick = () => {
         if (reduceMotion) return;
-        scatter(performance.now());
+        burst(performance.now());
       };
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key !== "Enter" && event.key !== " ") return;
