@@ -10,7 +10,7 @@ const contactLinks = [
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-border bg-card/40 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="contact" className="scroll-mt-24 min-h-[calc(100svh-6rem)] border-t border-border bg-card/40 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">06 / contact.sh</p>
         <div className="workbench-frame relative mt-6 grid overflow-hidden rounded-xl border border-border md:grid-cols-[0.85fr_1.15fr]">

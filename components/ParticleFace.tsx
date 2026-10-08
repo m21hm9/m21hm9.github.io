@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useTheme } from "@/components/theme-provider";
 import { withBasePath } from "@/lib/utils";
 
-const PORTRAIT_SRC = withBasePath("/me.png");
+const PORTRAIT_SRC = withBasePath("/photos/me(1).png");
 const SAMPLE_STEP = 3;
 const GATHER_MS = 1500;
 const BURST_MS = 700;

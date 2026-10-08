@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -13,12 +14,14 @@ const NAV_LINKS = [
   { href: "/#projects", label: "Projects" },
   { href: "/#certifications", label: "Credentials" },
   { href: "/#contact", label: "Contact" },
+  { href: "/photos", label: "Photos" },
 ];
 
 export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,6 +30,7 @@ export function Nav() {
       let current: string | null = null;
       for (const link of NAV_LINKS) {
         const id = link.href.split("#")[1];
+        if (!id) continue;
         const section = document.getElementById(id);
         if (section && section.getBoundingClientRect().top <= activationLine) current = id;
       }
@@ -57,19 +61,23 @@ export function Nav() {
           <span className="hidden border-l border-border pl-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground xl:inline">/ workspace</span>
         </div>
         <div className="hidden items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS.map((link) => {
+            const sectionId = link.href.split("#")[1];
+            const isActive = sectionId ? activeSection === sectionId : pathname === link.href;
+            return (
             <Link
               key={link.href}
               href={link.href}
-              aria-current={activeSection === link.href.split("#")[1] ? "location" : undefined}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "rounded-md px-2.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.06em] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-                activeSection === link.href.split("#")[1] && "bg-accent/10 text-accent ring-1 ring-accent/20"
+                isActive && "bg-accent/10 text-accent ring-1 ring-accent/20"
               )}
             >
               {link.label}
             </Link>
-          ))}
+            );
+          })}
         </div>
         <div className="flex items-center gap-1">
           <span className="hidden border-r border-border pr-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground xl:inline">index / 06</span>
@@ -87,16 +95,24 @@ export function Nav() {
         </div>
         {isMenuOpen && (
           <div id="mobile-navigation" className="absolute inset-x-0 top-full mt-2 grid gap-1 rounded-xl border border-border bg-background p-2 shadow-lg lg:hidden">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link) => {
+              const sectionId = link.href.split("#")[1];
+              const isActive = sectionId ? activeSection === sectionId : pathname === link.href;
+              return (
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={isActive ? "page" : undefined}
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-md px-4 py-3 font-mono text-xs uppercase tracking-wide text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className={cn(
+                  "rounded-md px-4 py-3 font-mono text-xs uppercase tracking-wide text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                  isActive && "bg-accent/10 text-accent"
+                )}
               >
                 {link.label}
               </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </nav>
