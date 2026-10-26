@@ -5,8 +5,10 @@ A personal portfolio built with **Next.js 16** (App Router), **TypeScript**, **T
 ## Features
 
 - Single-page layout with a clear introduction and featured projects near the top
-- Sections: Projects, Professional (Education, Tech stack, Experience), Digital Brain, Certifications, Contact
-- Interactive particle portrait and 2D/3D knowledge graph
+- Sections: Professional (Education, Tech stack, Experience), Projects, Certifications, Contact
+- Personal hero photo
+- macOS-inspired windows, editor-style profile and keyboard command menu (Ctrl/⌘ K)
+- Searchable technical toolkit with category filters
 - Dark-first theme with a light mode toggle
 - Categorized toolkit and research-note cards for the four pinned GitHub repositories
 - Responsive layout and keyboard-friendly controls
@@ -56,6 +58,6 @@ npm start
 
 ## Project structure
 
-- `app/` — layout, global styles, root page, knowledge graph route
-- `components/` — navigation, sections, particle portrait, knowledge graph, theme toggle, UI primitives
+- `app/` — layout, global styles, root page, photo gallery route
+- `components/` — navigation, sections, theme toggle, UI primitives
 - `data/content.ts` — all copy and links (education, skills, experience, projects, certifications, contact)

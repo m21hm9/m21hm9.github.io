@@ -1,45 +1,49 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
-import { KnowledgeGraphSection } from "@/components/knowledge-graph-section";
 import { Skills, Experience } from "@/components/professional";
 import { Projects } from "@/components/projects";
 import { Certifications } from "@/components/certifications";
 import { Contact } from "@/components/contact";
-import { DIGITAL_BRAIN_DATA } from "@/lib/knowledge-graph-data";
+import { ArrowUp, Github } from "lucide-react";
+import { contact } from "@/data/content";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main>
+      <main className="portfolio-workspace">
         <Hero />
-        <section id="knowledge-graph" className="workbench-grid scroll-mt-24 border-b border-border px-4 py-24 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">01 / knowledge graph</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">My digital brain.</h2>
-            <p className="mb-8 mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-              A map of the tools, experiences and ideas behind my work. Switch between 2D and 3D to explore how they connect.
-            </p>
-            <div className="workbench-frame relative overflow-hidden rounded-xl border border-border">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:px-6">
-                <span><span className="text-accent">graph.view</span> / interactive map</span>
-                <span>{DIGITAL_BRAIN_DATA.nodes.length} nodes · {DIGITAL_BRAIN_DATA.links.length} connections</span>
-              </div>
-              <div className="p-4 sm:p-6">
-                <KnowledgeGraphSection data={DIGITAL_BRAIN_DATA} height={480} />
-              </div>
-              <p className="border-t border-border px-4 py-3 font-mono text-[11px] text-muted-foreground sm:px-6">
-                input: drag to explore · switch layouts · click the background to reset
-              </p>
-            </div>
-          </div>
-        </section>
         <Skills />
         <Experience />
         <Projects />
         <Certifications />
         <Contact />
       </main>
+      <footer className="border-t border-border bg-card/50 px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 font-mono text-[10px] text-muted-foreground">
+          <span>
+            <span className="text-accent">matthew</span>@portfolio:~{" "}
+            <span className="ml-2">crafted with curiosity.</span>
+          </span>
+          <div className="flex items-center gap-5">
+            <a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded hover:text-accent focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <Github className="h-3.5 w-3.5" aria-hidden="true" />
+              GitHub
+            </a>
+            <a
+              href="#hero"
+              className="inline-flex items-center gap-1.5 rounded hover:text-accent focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              Back to top <ArrowUp className="h-3 w-3" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

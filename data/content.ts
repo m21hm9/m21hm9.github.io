@@ -84,9 +84,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-/** Flat list for marquee, knowledge graph, and any legacy consumers */
-export const skills: SkillItem[] = skillGroups.flatMap((g) => g.skills);
-
 export const experience = [
   {
     company: "The Bank of East Asia",
@@ -170,7 +167,7 @@ export const projects: Project[] = [
     tech: ["Python", "PyTorch", "Molecular AI", "Open source"],
     github: "https://github.com/m21hm9/torch-molecule",
     metric: {
-      value: "20K+",
+      value: "21K+",
       label: "lifetime PyPI downloads for the package",
       url: "https://pepy.tech/projects/torch-molecule",
     },

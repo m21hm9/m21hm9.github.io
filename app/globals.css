@@ -20,13 +20,13 @@
   }
 
   .dark {
-    --background: 220 23% 7%;
+    --background: 222 30% 6%;
     --foreground: 180 7% 94%;
-    --card: 219 20% 10%;
+    --card: 222 24% 9%;
     --card-foreground: 180 7% 94%;
     --muted: 219 17% 15%;
     --muted-foreground: 180 6% 68%;
-    --border: 216 14% 24%;
+    --border: 218 18% 22%;
     --input: 216 14% 24%;
     --primary: 162 82% 63%;
     --primary-foreground: 220 16% 7%;
@@ -55,32 +55,177 @@ html {
 
 .lab-grid {
   background-image:
-    radial-gradient(circle at 76% 47%, hsl(var(--accent) / 0.09), transparent 32%),
+    radial-gradient(
+      circle at 76% 47%,
+      hsl(var(--accent) / 0.09),
+      transparent 32%
+    ),
     linear-gradient(hsl(var(--accent) / 0.045) 1px, transparent 1px),
     linear-gradient(90deg, hsl(var(--accent) / 0.045) 1px, transparent 1px);
-  background-size: auto, 40px 40px, 40px 40px;
+  background-size:
+    auto,
+    40px 40px,
+    40px 40px;
 }
 
-.workbench-grid {
-  background-image:
-    linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
-  background-size: 48px 48px;
+.mac-window {
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+  border-radius: 14px;
+  background: linear-gradient(
+    150deg,
+    hsl(var(--card)),
+    hsl(var(--background)) 150%
+  );
+  box-shadow:
+    0 20px 50px -32px hsl(var(--foreground) / 0.22),
+    0 2px 6px hsl(var(--foreground) / 0.025),
+    inset 0 1px 0 hsl(var(--card) / 0.8);
+  transition:
+    border-color 220ms,
+    box-shadow 220ms;
 }
 
-.workbench-frame {
-  background: linear-gradient(155deg, hsl(var(--card)), hsl(var(--background)) 78%);
-  box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.04), 0 24px 60px -48px hsl(var(--accent) / 0.3);
+.mac-window:hover {
+  border-color: hsl(var(--accent) / 0.3);
+  box-shadow:
+    0 24px 64px -36px hsl(var(--accent) / 0.13),
+    0 2px 6px hsl(var(--foreground) / 0.025);
 }
 
-.workbench-frame::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 20px;
-  width: 72px;
-  height: 1px;
-  background: hsl(var(--accent) / 0.85);
+.mac-window-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 51px;
+  padding: 14px 20px;
+  border-bottom: 1px solid hsl(var(--border));
+  background: linear-gradient(
+    hsl(var(--muted) / 0.42),
+    hsl(var(--muted) / 0.18)
+  );
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.mac-window-lights {
+  display: flex;
+  flex-shrink: 0;
+  gap: 7px;
+}
+
+.mac-window-lights span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+}
+
+.mac-window-lights span:nth-child(1) {
+  background: #ff6057;
+}
+.mac-window-lights span:nth-child(2) {
+  background: #febc2e;
+}
+.mac-window-lights span:nth-child(3) {
+  background: #28c840;
+}
+
+.mac-window-title {
+  overflow: hidden;
+  min-width: 0;
+  color: hsl(var(--foreground) / 0.85);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mac-window-status {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: hsl(var(--accent));
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.portfolio-workspace h2 {
+  letter-spacing: -0.045em;
+}
+
+.hero-copy {
+  animation: workspace-enter 650ms ease-out both;
+}
+.hero-underline {
+  text-decoration: underline;
+  text-decoration-color: hsl(var(--accent) / 0.45);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+.toolkit-chip {
+  transition:
+    border-color 180ms,
+    color 180ms,
+    background 180ms;
+}
+.toolkit-chip:hover {
+  border-color: hsl(var(--accent) / 0.35);
+  color: hsl(var(--foreground));
+  background: hsl(var(--accent) / 0.06);
+}
+
+.command-dialog {
+  position: fixed;
+  inset: 16vh 16px auto;
+  width: min(560px, calc(100% - 32px));
+  max-height: 78svh;
+  margin-inline: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+  border-radius: 16px;
+  color: hsl(var(--foreground));
+  background: hsl(var(--card));
+  box-shadow:
+    0 32px 100px rgb(0 0 0 / 0.3),
+    0 0 0 1px hsl(var(--foreground) / 0.025);
+}
+.command-dialog[open] {
+  animation: command-enter 180ms ease-out;
+}
+.command-dialog::backdrop {
+  background: rgb(4 10 17 / 0.58);
+  backdrop-filter: blur(7px);
+}
+
+@keyframes workspace-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes command-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 420px) {
+  .mac-window-header {
+    gap: 10px;
+    padding-inline: 16px;
+  }
+  .mac-window-status {
+    font-size: 9px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
