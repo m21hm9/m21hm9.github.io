@@ -165,7 +165,7 @@ export const projects: Project[] = [
       "Contributed dataset splitting modules for molecular machine-learning workflows.",
     ],
     tech: ["Python", "PyTorch", "Molecular AI", "Open source"],
-    github: "https://github.com/m21hm9/torch-molecule",
+    github: "https://github.com/liugangcode/torch-molecule",
     metric: {
       value: "21K+",
       label: "lifetime PyPI downloads for the package",
