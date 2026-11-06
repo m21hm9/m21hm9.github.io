@@ -1,37 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
 import { PhotoGallery } from "@/components/photo-gallery";
 
 export const metadata: Metadata = {
-  title: "Photos · Thom Man Hei Matthew",
-  description: "Food photos from Matthew Thom.",
+  title: "Photos · Matthew Thom",
+  description: "A few meals and small moments, away from the projects.",
 };
 
 export default function PhotosPage() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-accent">album / food</p>
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">A few meals.</h1>
-              <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-                Food, away from the projects.
-              </p>
-            </div>
-            <Link
-              href="/"
-              className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            >
-              ← back home
-            </Link>
-          </div>
-          <PhotoGallery />
-        </div>
+      <main id="main" className="site-container section-space">
+        <Link href="/" className="quiet-link mb-12 text-xs">
+          <ArrowLeft size={14} aria-hidden="true" />
+          Back home
+        </Link>
+        <p className="eyebrow mb-5">A personal collection</p>
+        <h1 className="section-heading text-6xl sm:text-7xl">
+          A few <em className="text-accent">meals.</em>
+        </h1>
+        <p className="mb-12 mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+          Food, small moments, and a little life away from the projects.
+        </p>
+        <PhotoGallery />
       </main>
+      <div className="border-t">
+        <Footer />
+      </div>
     </>
   );
 }

@@ -25,8 +25,9 @@ const config: Config = {
         "popover-foreground": "hsl(var(--popover-foreground))",
       },
       fontFamily: {
+        serif: ["Georgia", "Times New Roman", "serif"],
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        mono: ["ui-monospace", "monospace"],
       },
     },
   },

@@ -1,138 +1,236 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+} from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { CommandMenu } from "@/components/command-menu";
-import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-const NAV_LINKS = [
-  { href: "/#skills", label: "Skills" },
+const links = [
+  { href: "/#projects", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#certifications", label: "Credentials" },
   { href: "/#contact", label: "Contact" },
   { href: "/photos", label: "Photos" },
 ];
 
 export function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const desktopLinks = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({
+    left: 0,
+    width: 0,
+    visible: false,
+  });
+
+  useLayoutEffect(() => {
+    const container = desktopLinks.current;
+    if (!container) return;
+    let disposed = false;
+    const measure = () => {
+      if (disposed) return;
+      const active =
+        container.querySelector<HTMLAnchorElement>("a[aria-current]");
+      if (!active || !container.getBoundingClientRect().width) {
+        setIndicator((previous) => ({ ...previous, visible: false }));
+        return;
+      }
+      setIndicator({
+        left: active.offsetLeft,
+        width: active.offsetWidth,
+        visible: true,
+      });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    document.fonts.ready.then(measure);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+    };
+  }, [activeSection, pathname]);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-      const activationLine = window.innerHeight * 0.32;
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+    const sections = links
+      .map((link) => link.href.split("#")[1])
+      .filter(Boolean);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const activationLine = Math.min(window.innerHeight * 0.3, 220);
       let current: string | null = null;
-      for (const link of NAV_LINKS) {
-        const id = link.href.split("#")[1];
-        if (!id) continue;
+      for (const id of sections) {
         const section = document.getElementById(id);
         if (section && section.getBoundingClientRect().top <= activationLine)
           current = id;
       }
+      if (
+        window.scrollY > 0 &&
+        window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight - 4
+      )
+        current = "contact";
       setActiveSection(current);
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
     };
-  }, []);
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    const observer = new ResizeObserver(schedule);
+    const main = document.querySelector("main");
+    if (main) observer.observe(main);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
+  const current = (href: string): "page" | "location" | undefined => {
+    const section = href.split("#")[1];
+    if (section)
+      return pathname === "/" && activeSection === section
+        ? "location"
+        : undefined;
+    return href === pathname ? "page" : undefined;
+  };
+
+  const navigate = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    setOpen(false);
+    if (
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      event.button !== 0
+    )
+      return;
+    const sectionId = href.split("#")[1];
+    const section =
+      sectionId && pathname === "/" ? document.getElementById(sectionId) : null;
+    if (!section) return;
+    event.preventDefault();
+    section.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+    if (window.location.hash !== `#${sectionId}`)
+      window.history.pushState(window.history.state, "", href);
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    const closeOnDesktop = () => {
+      if (window.innerWidth >= 768) setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("resize", closeOnDesktop);
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("resize", closeOnDesktop);
+    };
+  }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur-md">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-background focus:p-3"
+      >
+        Skip to content
+      </a>
       <nav
         aria-label="Main navigation"
-        className={cn(
-          "relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-xl border border-border bg-background/95 px-4 py-2.5 backdrop-blur-xl transition-shadow sm:px-5",
-          isScrolled ? "shadow-lg" : "shadow-sm",
-        )}
+        className="site-container relative flex h-20 items-center justify-between gap-5"
       >
-        <div className="flex min-w-0 items-center gap-3">
-          <Link
-            href="/"
-            className="shrink-0 font-mono text-sm font-bold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          className="font-serif whitespace-nowrap text-[25px] tracking-[-.05em]"
+        >
+          Matthew Thom<span className="text-accent">.</span>
+        </Link>
+        <div className="flex items-center gap-5 lg:gap-8">
+          <div
+            ref={desktopLinks}
+            className="relative hidden items-center gap-6 md:flex lg:gap-8"
           >
-            <span className="text-accent">&lt;</span>matthew.thom
-            <span className="text-accent">/&gt;</span>
-          </Link>
-          <span className="hidden border-l border-border pl-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground xl:inline">
-            / workspace
-          </span>
-        </div>
-        <div className="hidden items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => {
-            const sectionId = link.href.split("#")[1];
-            const isActive = sectionId
-              ? activeSection === sectionId
-              : pathname === link.href;
-            return (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "rounded-md px-2.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.06em] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-                  isActive && "bg-accent/10 text-accent ring-1 ring-accent/20",
-                )}
+                aria-current={current(link.href)}
+                onClick={(event) => navigate(event, link.href)}
+                className="nav-link text-xs text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>
-            );
-          })}
+            ))}
+            <span
+              aria-hidden="true"
+              className="nav-indicator"
+              style={{
+                width: indicator.width,
+                transform: `translateX(${indicator.left}px)`,
+                opacity: indicator.visible ? 1 : 0,
+              }}
+            />
+          </div>
+          <div className="flex items-center gap-2 md:border-l md:pl-5">
+            <ThemeToggle />
+            <button
+              ref={menuButton}
+              type="button"
+              aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => setOpen(!open)}
+              className="flex h-10 w-10 items-center justify-center md:hidden"
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-1">
-          <CommandMenu />
-          <ThemeToggle className="flex h-9 w-9 shrink-0" />
-          <button
-            type="button"
-            aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-controls="mobile-navigation"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
-          >
-            {isMenuOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            )}
-          </button>
-        </div>
-        {isMenuOpen && (
+        {open && (
           <div
             id="mobile-navigation"
-            className="absolute inset-x-0 top-full mt-2 grid gap-1 rounded-xl border border-border bg-background p-2 shadow-lg lg:hidden"
+            className="absolute inset-x-0 top-full grid border-b bg-background px-6 py-5 shadow-sm md:hidden"
           >
-            {NAV_LINKS.map((link) => {
-              const sectionId = link.href.split("#")[1];
-              const isActive = sectionId
-                ? activeSection === sectionId
-                : pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive ? "page" : undefined}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={cn(
-                    "rounded-md px-4 py-3 font-mono text-xs uppercase tracking-wide text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-                    isActive && "bg-accent/10 text-accent",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={current(link.href)}
+                onClick={(event) => navigate(event, link.href)}
+                className="py-3 text-base text-muted-foreground hover:text-foreground aria-[current]:text-accent"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         )}
       </nav>

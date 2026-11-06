@@ -1,63 +1,43 @@
-# Thom Man Hei Matthew — Personal Portfolio
+# Matthew Thom — Personal Portfolio
 
-A personal portfolio built with **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS**, **Geist** fonts, **Framer Motion**, and **Lucide icons**.
+A personal portfolio built with Next.js, TypeScript, Tailwind CSS, and Lucide icons. The design pairs serif headings with Geist body text, warm ivory and near-black themes, and a portrait-led introduction.
 
 ## Features
 
-- Single-page layout with a clear introduction and featured projects near the top
-- Sections: Professional (Education, Tech stack, Experience), Projects, Certifications, Contact
-- Personal hero photo
-- macOS-inspired windows, editor-style profile and keyboard command menu (Ctrl/⌘ K)
-- Searchable technical toolkit with category filters
-- Dark-first theme with a light mode toggle
-- Categorized toolkit and research-note cards for the four pinned GitHub repositories
-- Responsive layout and keyboard-friendly controls
+- Gallery and Index project views with shared artwork transitions
+- A focused project reader with previous/next navigation and exact return position
+- SVG concept illustrations and a step-by-step research workflow
+- Research and Professional experience tabs with concise role summaries and organisation links
+- A once-per-session portrait reveal and staggered scroll entrances
+- Uniform project and photo galleries with matching cover proportions and spacing
+- Photo viewer with a thumbnail filmstrip, shared image transitions, arrow keys, mobile swipe, and focus restoration
+- Light and dark modes that follow the device initially and remember a manual choice
+- A continuous navigation underline that follows the current section, keyboard focus states, and reduced-motion support
 
-## Setup
+## Development
 
-1. **Install dependencies**
+```sh
+npm install
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
+Open [localhost:3000](http://localhost:3000). Edit `data/content.ts` to update projects, experience, education, skills, credentials, and contact details.
 
-2. **Edit content**
+## Production
 
-   Update `data/content.ts` with your data:
-   - Education, skills (with optional `image` URLs), experience bullets, projects (GitHub/demo links), certifications, contact (email, LinkedIn, GitHub).
-
-3. **Run locally**
-
-   ```bash
-   npm run dev
-   ```
-
-   Open [http://localhost:3000](http://localhost:3000).
-
-## Build
-
-```bash
+```sh
 npm run build
 npm start
 ```
 
-## Deploy
+The included GitHub Actions workflow builds a static export and deploys `out/` to GitHub Pages when changes are pushed to `master`. Static export is enabled with `GITHUB_PAGES=true`; Vercel uses the default Next.js build.
 
-- The included GitHub Actions workflow builds a static export and deploys `out/` to GitHub Pages when changes are pushed to `master`.
-- For Vercel, connect the repository and use the default Next.js build settings. The static export is enabled only when `GITHUB_PAGES=true`.
+## Structure
 
-## Tech stack
+- `app/` — routes, layout, and shared design tokens
+- `components/` — navigation, content sections, gallery, and theme controls
+- `data/content.ts` — portfolio content and links
+- `lib/theme.ts` — theme preference validation and initial theme script
+- `public/photos/` — portrait and food photography
 
-- **Next.js 16** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **Geist** (sans & mono) via `geist` package
-- **Radix UI** (Slot, Tooltip) + **CVA** / **clsx** / **tailwind-merge** for components
-- **Framer Motion** for animations
-- **Lucide React** for icons
-
-## Project structure
-
-- `app/` — layout, global styles, root page, photo gallery route
-- `components/` — navigation, sections, theme toggle, UI primitives
-- `data/content.ts` — all copy and links (education, skills, experience, projects, certifications, contact)
+Colours and shared layout styles live in `app/globals.css`. Interactive components handle project views, visual studies, the experience timeline, navigation, theme preferences, and photo browsing. Fonts work without external requests. Animations respect the device's reduced-motion preference, and theme colours update immediately. Shared image transitions use progressive enhancement so the controls also work in older browsers.
